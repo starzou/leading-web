@@ -1,6 +1,6 @@
 /**
- * @class home 主页模块
- * @description
+ * @class home
+ * @description 主页模块
  * @time 2014-12-03 16:44
  * @author StarZou
  **/

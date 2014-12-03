@@ -1,6 +1,6 @@
 /**
- * @class members 会员模块
- * @description
+ * @class members
+ * @description 会员模块
  * @time 2014-12-03 17:45
  * @author StarZou
  **/
