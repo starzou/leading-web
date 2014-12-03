@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>leading-web 系统</title>
+    <link rel="stylesheet" href="/src/assets/css/app.css"/>
 </head>
 <body>
     <h1>leading-web 系统</h1>
     <ul>
         <li><a href="#/">首页</a></li>
-        <li><a href="#/points/produces">积分发放模块</a></li>
-        <li><a href="#/points/consumes">积分消费模块</a></li>
+        <li>
+            <div>
+                <span>积分模块</span>
+                <ul>
+                    <li><a href="#/points/produces">积分发放模块</a></li>
+                    <li><a href="#/points/consumes">积分消费模块</a></li>
+                </ul>
+            </div>
+        </li>
         <li><a href="#/members">会员模块</a></li>
     </ul>
     <div ng-view></div>
