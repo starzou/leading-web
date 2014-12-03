@@ -7,17 +7,17 @@
 (function (window, document) {
     'use strict';
 
-    var App = angular.module('App', ['ngRoute', 'ngResource', 'home']);
+    var app = angular.module('App', ['ngRoute', 'ngResource', 'home', 'members']);
 
-    App.config(['$routeProvider', function ($routeProvider) {
+    app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
 
-    App.run(['$rootScope', function ($rootScope) {
+    app.run(['$rootScope', function ($rootScope) {
 
     }]);
 
-    App.controller('AppCtrl', ['$scope', function () {
+    app.controller('AppCtrl', ['$scope', function () {
 
     }]);
 

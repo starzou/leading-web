@@ -7,13 +7,13 @@
 (function (window, document) {
     'use strict';
 
-    var Home = angular.module('home', []);
+    var home = angular.module('home', []);
 
-    Home.config(['$routeProvider', function ($routeProvider) {
+    home.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'app/home/home.tpl.html', controller: 'HomeController'});
     }]);
 
-    Home.controller('HomeController', ['$scope', function ($scope) {
+    home.controller('HomeController', ['$scope', function ($scope) {
         $scope.title = '首页';
     }]);
 })(window, document);
