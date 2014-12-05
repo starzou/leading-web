@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>leading-web 系统</title>
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" href="/bower_components/angular-motion/dist/angular-motion.css"/>
-    <link rel="stylesheet" href="/src/assets/css/app.css"/>
+    <!-- build:css css/lib.css -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../bower_components/angular-motion/dist/angular-motion.css"/>
+    <!-- endbuild -->
+
+    <!-- build:css css/app.css -->
+    <link rel="stylesheet" href="assets/css/app.css"/>
+    <!-- endbuild -->
 </head>
 <body>
     <h1>leading-web 系统</h1>
@@ -24,21 +29,27 @@
     </ul>
     <div ng-view></div>
 
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/angular-route/angular-route.js"></script>
-    <script src="/bower_components/angular-resource/angular-resource.js"></script>
-    <script src="/bower_components/angular-animate/angular-animate.js"></script>
-    <script src="/bower_components/angular-strap/dist/angular-strap.js"></script>
-    <script src="/bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+    <!-- build:js js/lib.js -->
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/angular-strap/dist/angular-strap.js"></script>
+    <script src="../bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+    <!-- endbuild -->
 
-    <script src="/src/common/directives/directives.js"></script>
-    <script src="/src/common/directives/validateForm.js"></script>
+    <!-- build:js js/common.js -->
+    <script src="common/directives/directives.js"></script>
+    <script src="common/directives/validateForm.js"></script>
+    <!-- endbuild -->
 
-    <script src="/src/app/app.js"></script>
-    <script src="/src/app/home/home.js"></script>
-    <script src="/src/app/points/produces/produces.js"></script>
-    <script src="/src/app/points/consumes/consumes.js"></script>
-    <script src="/src/app/points/points.js"></script>
-    <script src="/src/app/members/members.js"></script>
+    <!-- build:js js/app.js -->
+    <script src="app/app.js"></script>
+    <script src="app/home/home.js"></script>
+    <script src="app/points/produces/produces.js"></script>
+    <script src="app/points/consumes/consumes.js"></script>
+    <script src="app/points/points.js"></script>
+    <script src="app/members/members.js"></script>
+    <!-- endbuild -->
 </body>
 </html>

@@ -11,14 +11,22 @@ var uglify = require('gulp-uglify');
 var minifyHtml = require('gulp-minify-html');
 var minifyCss = require('gulp-minify-css');
 var rev = require('gulp-rev');
+var del = require('del');
 
-var root = 'public/';
+var root = 'public/'; // 主目录
+
+/**
+ * 清空build目录
+ */
+gulp.task('clean', function (cb) {
+    del('build', cb);
+});
 
 gulp.task('usemin', function () {
     return gulp.src(root + 'src/index.html')
         .pipe(usemin({
-            css : [minifyCss(), 'concat'],
-            html: [minifyHtml({empty: true})],
+            css : [minifyCss(), 'concat', rev()],
+            html: [minifyHtml({empty: true, quotes: true})],
             js  : [uglify(), rev()]
         }))
         .pipe(gulp.dest(root + 'build/'));
