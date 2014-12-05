@@ -7,16 +7,30 @@
 (function (window, document) {
     'use strict';
 
-    var app = angular.module('App', ['ngRoute', 'ngResource', 'home', 'members', 'points', 'directives']);
+    /**
+     * App 主模块
+     * @type {*|module}
+     */
+    var app = angular.module('App', ['ngRoute', 'ngResource', 'services', 'directives', 'home', 'members', 'points']);
 
+    /**
+     * App 配置
+     */
     app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
 
+
+    /**
+     * App 初始化
+     */
     app.run(['$rootScope', function ($rootScope) {
 
     }]);
 
+    /**
+     * 主控制器
+     */
     app.controller('AppCtrl', ['$scope', function () {
 
     }]);

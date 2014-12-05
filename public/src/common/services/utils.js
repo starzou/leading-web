@@ -7,13 +7,12 @@
 (function (window, document) {
     'use strict';
 
-    var utils = angular.module('services.utils');
+    var utils = angular.module('services.utils', []);
 
     utils.provider('utils', function () {
         var me = {
             name: 'services.utils 1.0.0'
         };
-
 
         /**
          * 根据对象属性, 生成URL
