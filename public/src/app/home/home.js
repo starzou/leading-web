@@ -13,7 +13,7 @@
         $routeProvider.when('/', {templateUrl: 'app/home/home.tpl.html', controller: 'HomeController'});
     }]);
 
-    home.controller('HomeController', ['$scope', function ($scope) {
+    home.controller('HomeController', ['$scope', 'utils', function ($scope, utils) {
         $scope.title = '首页';
     }]);
 })(window, document);

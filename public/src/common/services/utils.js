@@ -34,6 +34,13 @@
             return url + "?" + queryStrings.join("&");
         };
 
+        /**
+         * 下载
+         */
+        me.download = function (url) {
+            window.location.href = this.buildURL(url, Array.prototype.slice.call(arguments, 1));
+        };
+
         this.$get = [function () {
             return me;
         }];
