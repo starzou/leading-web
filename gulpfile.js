@@ -23,7 +23,7 @@ var root = 'public/';
  * 清空build目录
  */
 gulp.task('clean', function (cb) {
-    del(root + 'build', cb);
+    del(root + 'dist', cb);
 });
 
 /**
@@ -31,7 +31,7 @@ gulp.task('clean', function (cb) {
  */
 gulp.task('copy-assets', function () {
     gulp.src(root + 'src/assets/**/*')
-        .pipe(gulp.dest(root + 'build/assets'));
+        .pipe(gulp.dest(root + 'dist/assets'));
 });
 
 /**
@@ -42,7 +42,7 @@ gulp.task('copy-templates', function () {
         .pipe(usemin({
             html: [minifyHtml({empty: true, quotes: true})]
         }))
-        .pipe(gulp.dest(root + 'build/app'));
+        .pipe(gulp.dest(root + 'dist/app'));
 });
 
 /**
@@ -55,7 +55,7 @@ gulp.task('usemin', function () {
             html: [minifyHtml({empty: true, quotes: true})],
             js  : [uglify(), rev()]
         }))
-        .pipe(gulp.dest(root + 'build/'));
+        .pipe(gulp.dest(root + 'dist/'));
 });
 
 /**
