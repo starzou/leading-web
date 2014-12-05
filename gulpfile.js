@@ -12,6 +12,7 @@ var minifyHtml = require('gulp-minify-html');
 var minifyCss = require('gulp-minify-css');
 var rev = require('gulp-rev');
 var del = require('del');
+var runSequence = require('run-sequence');
 
 /**
  * 主目录
@@ -30,7 +31,7 @@ gulp.task('clean', function (cb) {
  */
 gulp.task('copy-assets', function () {
     gulp.src(root + 'src/assets/**/*')
-        .pipe(gulp.dest(root + 'build'));
+        .pipe(gulp.dest(root + 'build/assets'));
 });
 
 /**
@@ -41,7 +42,7 @@ gulp.task('copy-templates', function () {
         .pipe(usemin({
             html: [minifyHtml({empty: true, quotes: true})]
         }))
-        .pipe(gulp.dest(root + 'build'));
+        .pipe(gulp.dest(root + 'build/app'));
 });
 
 /**
