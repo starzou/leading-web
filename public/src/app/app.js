@@ -7,7 +7,7 @@
 (function (window, document) {
     'use strict';
 
-    var app = angular.module('App', ['ngRoute', 'ngResource', 'home', 'members', 'points']);
+    var app = angular.module('App', ['ngRoute', 'ngResource', 'home', 'members', 'points', 'directives']);
 
     app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/'});
