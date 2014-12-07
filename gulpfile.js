@@ -15,23 +15,36 @@ var del = require('del');
 var runSequence = require('run-sequence');
 
 /**
- * 主目录
+ * 主目录 路径
  */
 var root = 'public/';
 
 /**
- * 清空build目录
+ * 首页 路径
+ */
+var indexPath = 'src/index3.html';
+
+/**
+ * 清空 dist目录
  */
 gulp.task('clean', function (cb) {
     del(root + 'dist', cb);
 });
 
 /**
- * 复制资源文件
+ * 复制 资源文件
  */
 gulp.task('copy-assets', function () {
     gulp.src(root + 'src/assets/**/*')
         .pipe(gulp.dest(root + 'dist/assets'));
+});
+
+/**
+ * 复制 字体文件
+ */
+gulp.task('copy-fonts', function () {
+    gulp.src([root + 'bower_components/font-awesome/fonts/*', root + 'bower_components/simple-line-icons/fonts/*'])
+        .pipe(gulp.dest(root + 'dist/assets/fonts'));
 });
 
 /**
@@ -49,7 +62,7 @@ gulp.task('copy-templates', function () {
  * 压缩首页, 会压缩引用的css, js
  */
 gulp.task('usemin', function () {
-    return gulp.src(root + 'src/index.html')
+    return gulp.src(root + indexPath)
         .pipe(usemin({
             css : [minifyCss(), rev()],
             html: [minifyHtml({empty: true, quotes: true})],
@@ -63,5 +76,5 @@ gulp.task('usemin', function () {
  * 使用 命令行: gulp运行
  */
 gulp.task('default', function (cb) {
-    runSequence('clean', ['usemin', 'copy-templates', 'copy-assets'], cb);
+    runSequence('clean', ['usemin', 'copy-templates', 'copy-assets', 'copy-fonts'], cb);
 });
