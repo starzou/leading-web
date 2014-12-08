@@ -48,9 +48,9 @@ gulp.task('copy-fonts', function () {
 });
 
 /**
- * 复制,压缩 html模板文件
+ * 复制,压缩 控制器html模板文件
  */
-gulp.task('copy-templates', function () {
+gulp.task('copy-controller-templates', function () {
     gulp.src(root + 'src/app/**/*.html')
         .pipe(usemin({
             html: [minifyHtml({empty: true, quotes: true})]
@@ -59,9 +59,20 @@ gulp.task('copy-templates', function () {
 });
 
 /**
+ * 复制,压缩 指令html模板文件
+ */
+gulp.task('copy-directive-templates', function () {
+    gulp.src(root + 'src/common/**/*.html')
+        .pipe(usemin({
+            html: [minifyHtml({empty: true, quotes: true})]
+        }))
+        .pipe(gulp.dest(root + 'dist/common'));
+});
+
+/**
  * 压缩首页, 会压缩引用的css, js
  */
-gulp.task('usemin', function () {
+gulp.task('minimize-index', function () {
     return gulp.src(root + indexPath)
         .pipe(usemin({
             css : [minifyCss(), rev()],
@@ -76,5 +87,5 @@ gulp.task('usemin', function () {
  * 使用 命令行: gulp运行
  */
 gulp.task('default', function (cb) {
-    runSequence('clean', ['usemin', 'copy-templates', 'copy-assets', 'copy-fonts'], cb);
+    runSequence('clean', ['minimize-index', 'copy-controller-templates', 'copy-directive-templates', 'copy-assets', 'copy-fonts'], cb);
 });
