@@ -11,7 +11,7 @@
      * App 主模块
      * @type {*|module}
      */
-    var app = angular.module('App', ['ngRoute', 'ngResource', 'services', 'directives', 'directives.pages.header', 'home', 'members', 'points']);
+    var app = angular.module('App', ['ngRoute', 'ngResource', 'services', 'directives', 'directives.pages.header', 'directives.pages.container', 'home', 'members', 'points']);
 
     /**
      * App 配置
