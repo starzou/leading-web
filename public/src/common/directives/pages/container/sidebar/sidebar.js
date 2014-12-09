@@ -14,17 +14,22 @@
             restrict   : 'A',
             replace    : true,
             templateUrl: 'common/directives/pages/container/sidebar/sidebar.tpl.html',
+            scope      : true,
+            controller : ['$scope', function ($scope) {
+                console.log($scope);
+            }],
             compile    : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
                     var $body = angular.element(document.body),
                         element = $element[0],
-                        $sidebarMenu = angular.element(element.querySelector('.page-sidebar-menu')),
+                        sidebarMenu = element.querySelector('.page-sidebar-menu'),
+                        $sidebarMenu = angular.element(sidebarMenu),
                         sidebarToggler = element.querySelector('.sidebar-toggler');
-                    
+
+                    /**
+                     * 显示, 隐藏 sidebar
+                     */
                     sidebarToggler.addEventListener('click', function () {
-                        /**
-                         * sidebar 已经关闭, 则显示
-                         */
                         if ($body.hasClass('page-sidebar-closed')) {
                             $body.removeClass('page-sidebar-closed');
                             $sidebarMenu.removeClass('page-sidebar-menu-closed');
@@ -37,6 +42,38 @@
                             $body.removeClass('page-sidebar-fixed');
                         }
                     });
+
+
+                    /**
+                     * 显示, 隐藏 menu
+                     */
+                    $sidebarMenu.on('click', function (event) {
+                        var target = event.target,
+                            liElement,
+                            liElements,
+                            ulElement;
+
+                        if (target.tagName.toLowerCase() === 'a') {
+                            liElement = target.parentNode;
+                        } else {
+                            liElement = target.parentNode.parentNode;
+                        }
+
+                        ulElement = liElement.parentNode;
+                        liElements = ulElement.children;
+
+                        for (var i = 0; i < liElements.length; i++) {
+                            if (liElements[i] != liElement) {
+                                liElements[i].classList.remove('active');
+                            }
+                        }
+
+                        liElement.classList.toggle('active');
+
+                        var arrow = liElement.querySelector('a > .arrow');
+                        arrow && arrow.classList.toggle('open');
+                    });
+
                 };
             }
         }

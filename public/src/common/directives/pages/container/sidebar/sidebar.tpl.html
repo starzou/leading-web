@@ -31,67 +31,19 @@
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
 
-            <li class="start active open">
-                <a href="javascript:;">
+            <li ng-repeat="menu in menus">
+                <a href="">
                     <i class="icon-home"></i>
-                    <span class="title">首页</span>
+                    <span class="title" ng-bind="menu.menuName"></span>
                     <span class="selected"></span>
-                    <span class="arrow open"></span>
+                    <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <li class="active">
-                        <a href=""><i class="icon-bar-chart"></i>菜单1</a>
-                    </li>
-                    <li>
-                        <a href=""><i class="icon-bulb"></i>菜单2</a>
-                    </li>
-                    <li>
-                        <a href=""><i class="icon-graph"></i>菜单3</a>
+                    <li ng-repeat="subMenu in menu.subList">
+                        <a href="{{subMenu.url}}" ng-bind="subMenu.menuName"></a>
                     </li>
                 </ul>
             </li>
-            <li class="">
-                <a href="javascript:;">
-                    <i class="icon-folder"></i>
-                    <span class="title">多级菜单</span>
-                    <span class="selected"></span>
-                    <span class="arrow open"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="active">
-                        <a href="javascript:;">
-                            <i class="icon-settings"></i>菜单1<span class="arrow"></span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="active">
-                                <a href="javascript:;">
-                                    <i class="icon-user"></i>菜单1-1<span class="arrow"></span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a href=""><i class="icon-power"></i>菜单1-1-1</a>
-                                    </li>
-                                    <li>
-                                        <a href=""><i class="icon-paper-plane"></i>菜单1-1-2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href=""><i class="icon-camera"></i>菜单1-2</a>
-                            </li>
-                            <li>
-                                <a href=""><i class="icon-link"></i>菜单1-3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="icon-bar-chart"></i>菜单2
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>
