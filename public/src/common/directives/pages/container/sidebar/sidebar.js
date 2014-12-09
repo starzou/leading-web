@@ -20,8 +20,7 @@
                         element = $element[0],
                         $sidebarMenu = angular.element(element.querySelector('.page-sidebar-menu')),
                         sidebarToggler = element.querySelector('.sidebar-toggler');
-
-
+                    
                     sidebarToggler.addEventListener('click', function () {
                         /**
                          * sidebar 已经关闭, 则显示
@@ -38,8 +37,6 @@
                             $body.removeClass('page-sidebar-fixed');
                         }
                     });
-
-                    console.log(document.body);
                 };
             }
         }
