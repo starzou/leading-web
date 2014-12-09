@@ -13,7 +13,7 @@
         return {
             restrict: 'A',
             replace : true,
-            template: '<div class="page-spinner-bar"><i class="fa fa-4x fa-spinner fa-spin"></i></div>',
+            template: '<div class="page-spinner-bar hide"><i class="fa fa-4x fa-spinner fa-spin"></i></div>',
             compile : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
 
