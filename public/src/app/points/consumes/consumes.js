@@ -25,8 +25,7 @@
                 content  : '服务器磁盘不足!',
                 placement: 'top-right',
                 type     : 'info',
-                animation: 'am-fade-and-slide-top',
-                duration : 3
+                animation: 'am-fade-and-slide-top'
             });
         };
     }]);
