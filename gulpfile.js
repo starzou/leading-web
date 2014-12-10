@@ -43,7 +43,7 @@ gulp.task('copy-assets', function () {
  * 复制 字体文件
  */
 gulp.task('copy-fonts', function () {
-    gulp.src([root + 'bower_components/font-awesome/fonts/*', root + 'bower_components/simple-line-icons/fonts/*'])
+    gulp.src([root + 'bower_components/font-awesome/fonts/*', root + 'bower_components/simple-line-icons/fonts/*', root + 'bower_components/bootstrap/dist/fonts/*'])
         .pipe(gulp.dest(root + 'dist/assets/fonts'));
 });
 
