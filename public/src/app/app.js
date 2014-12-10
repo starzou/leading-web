@@ -9,7 +9,6 @@
 
     /**
      * App 主模块
-     * @type {*|module}
      */
     var app = angular.module('App', ['ngRoute', 'ngResource', 'ngLocale', 'ngAnimate', 'services', 'components', 'directives', 'home', 'members', 'points']);
 
@@ -31,7 +30,7 @@
     /**
      * 主控制器
      */
-    app.controller('AppCtrl', ['$scope', function () {
+    app.controller('AppController', ['$scope', function () {
 
     }]);
 
