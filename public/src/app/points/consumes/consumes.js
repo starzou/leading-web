@@ -16,8 +16,19 @@
         });
     }]);
 
-    consumes.controller('ConsumesController', ['$scope', function ($scope) {
+    consumes.controller('ConsumesController', ['$scope', '$alert', function ($scope, $alert) {
         $scope.title = '积分消费模块';
+        
+        $scope.showAlert = function () {
+            $alert({
+                title    : '警告!',
+                content  : '服务器磁盘不足!',
+                placement: 'top-right',
+                type     : 'info',
+                animation: 'am-fade-and-slide-top',
+                duration : 3
+            });
+        };
     }]);
 
 })(window, document);
