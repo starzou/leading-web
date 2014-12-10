@@ -7,7 +7,7 @@
 (function (window, document) {
     'use strict';
 
-    var menu = angular.module('components.container.sidebar.menu', []);
+    var menu = angular.module('components.container.sidebar.menu', ['resources.menus']);
 
     menu.provider('menuUtil', function () {
         var html = '',
@@ -53,7 +53,7 @@
         }];
     });
 
-    menu.directive('sidebarMenu', ['menuUtil', function (menuUtil) {
+    menu.directive('sidebarMenu', ['menuUtil', 'Menus', function (menuUtil, Menus) {
         return {
             restrict: 'A',
             compile : function ($element, $attr) {
@@ -61,8 +61,10 @@
                 return function ($scope, $element, $attr) {
                     console.log('link', $element, $scope);
 
-                    var html = menuUtil.createMenuElement($scope.menus);
-                    $element[0].outerHTML = html;
+                    Menus.query(function (menus) {
+                        var html = menuUtil.createMenuElement(menus);
+                        $element[0].outerHTML = html;
+                    });
 
                     //console.log(html);
                     //console.log($element[0]);
