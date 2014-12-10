@@ -7,13 +7,13 @@
 (function (window, document) {
     'use strict';
 
-    var container = angular.module('directives.pages.container', ['directives.pages.container.sidebar', 'directives.pages.container.content']);
+    var container = angular.module('components.container', ['components.container.sidebar', 'components.container.content']);
 
     container.directive('pageContainer', [function () {
         return {
             restrict   : 'A',
             replace    : true,
-            templateUrl: 'common/directives/pages/container/container.tpl.html',
+            templateUrl: 'common/components/container/container.tpl.html',
             compile    : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
 

@@ -7,13 +7,13 @@
 (function (window, document) {
     'use strict';
 
-    var sidebar = angular.module('directives.pages.container.sidebar', []);
+    var sidebar = angular.module('components.container.sidebar', []);
 
     sidebar.directive('pageSidebar', [function () {
         return {
             restrict   : 'A',
             replace    : true,
-            templateUrl: 'common/directives/pages/container/sidebar/sidebar.tpl.html',
+            templateUrl: 'common/components/container/sidebar/sidebar.tpl.html',
             scope      : true,
             controller : ['$scope', function ($scope) {
                 $scope.menus = [{

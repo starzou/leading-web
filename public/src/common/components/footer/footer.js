@@ -1,19 +1,19 @@
 /**
- * @class header
- * @description 首页 header头部模块
+ * @class footer
+ * @description 首页 footer模块
  * @time 2014-12-05 14:20
  * @author StarZou
  **/
 (function (window, document) {
     'use strict';
 
-    var header = angular.module('directives.pages.header', []);
+    var footer = angular.module('components.footer', []);
 
-    header.directive('pageHeader', [function () {
+    footer.directive('pageFooter', [function () {
         return {
             restrict   : 'A',
             replace    : true,
-            templateUrl: 'common/directives/pages/header/header.tpl.html',
+            templateUrl: 'common/components/footer/footer.tpl.html',
             compile    : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
 

@@ -7,7 +7,7 @@
 (function (window, document) {
     'use strict';
 
-    var spinner = angular.module('directives.pages.spinner', []);
+    var spinner = angular.module('components.spinner', []);
 
     spinner.directive('pageSpinner', [function () {
         return {
