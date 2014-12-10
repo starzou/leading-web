@@ -7,7 +7,7 @@
 (function (window, document) {
     'use strict';
 
-    var sidebar = angular.module('components.container.sidebar', []);
+    var sidebar = angular.module('components.container.sidebar', ['components.container.sidebar.menu']);
 
     sidebar.directive('pageSidebar', [function () {
         return {
