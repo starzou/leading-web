@@ -41,7 +41,48 @@
     date.directive('dateRange', [function () {
         return {
             replace    : true,
-            templateUrl: 'common/components/date/date-range.tpl.html'
+            scope      : {
+                target: '='
+            },
+            templateUrl: 'common/components/date/date-range.tpl.html',
+            link       : function postLink($scope, $element, $attr) {
+                // 设置最大日期
+                $scope.maxDate = new Date();
+
+
+                /**
+                 * 选择 开始日期
+                 */
+                $scope.$watch('param.startDate', function (newValue, oldValue) {
+                    if (newValue === oldValue && newValue === undefined) {
+                        return;
+                    }
+
+                    if (!$scope.target) {
+                        $scope.target = {};
+                    }
+
+                    // 绑定 开始日期
+                    $scope.target[$attr.start || 'startDate'] = newValue;
+                });
+
+
+                /**
+                 * 选择 结束日期
+                 */
+                $scope.$watch('param.endDate', function (newValue, oldValue) {
+                    if (newValue === oldValue && newValue === undefined) {
+                        return;
+                    }
+
+                    if (!$scope.target) {
+                        $scope.target = {};
+                    }
+
+                    // 绑定 结束日期
+                    $scope.target[$attr.end || 'endDate'] = newValue;
+                });
+            }
         };
     }]);
 

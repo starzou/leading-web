@@ -3,7 +3,7 @@
         <div class="portlet box green-meadow">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-gift"></i>Alert
+                    <i class="fa fa-gift"></i>基础组件封装
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse">
@@ -15,17 +15,27 @@
                 </div>
             </div>
             <div class="portlet-body">
-                <a class="btn blue btn-sm" ng-click="showAlert();"><i class="fa fa-pencil"></i> Alert </a>
-
-                <div date-range></div>
-                <br>
-
+                <a class="btn blue btn-sm" ng-click="showAlert();"><i class="fa fa-pencil"></i> 提醒框 </a>
 
                 <div>
-                    name :<input type="text" ng-model="param.name"/><br>
-                    birthday :
+                    <p>
+                        时间区间
+
+                    <div date-range target="param"></div>
+                    </p>
+
+                    <p>
+                        name :<input type="text" ng-model="param.name"/>
+                    </p>
+
+                    <p>
+                        日期时间
+
                     <div datetime-picker="birthday" target="param"></div>
 
+                    </p>
+
+                    参数
                     <pre>{{param | json}}</pre>
                 </div>
             </div>
