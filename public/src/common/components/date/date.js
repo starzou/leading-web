@@ -9,21 +9,49 @@
 
     var date = angular.module('components.date', ['mgcrea.ngStrap']);
 
-    date.config(['$datepickerProvider', function ($datepickerProvider) {
+    date.config(['$datepickerProvider', '$timepickerProvider', function ($datepickerProvider, $timepickerProvider) {
+
+        /**
+         * 配置 日期控件
+         */
         angular.extend($datepickerProvider.defaults, {
             dateFormat: 'yyyy-MM-dd',
             animation : 'am-fade-and-slide-top',
             startWeek : 1,
-            autoclose : true,
+            autoclose : false,
             maxDate   : Date.now()
+        });
+
+
+        /**
+         *  配置 时间控件
+         */
+        angular.extend($timepickerProvider.defaults, {
+            timeFormat: 'HH:mm',
+            animation : 'am-fade-and-slide-top',
+            length    : 7
         });
     }]);
 
 
+    /**
+     * 时间区间 选择器
+     */
     date.directive('dateRange', [function () {
         return {
-            replace : true,
-            template: '<div class="form-inline"><input type="text" class="form-control" ng-model="startDate" data-max-date="{{endDate}}" placeholder="开始日期" bs-datepicker><input type="text" class="form-control" ng-model="endDate" data-min-date="{{startDate}}" placeholder="结束日期" bs-datepicker></div>'
+            replace    : true,
+            templateUrl: 'common/components/date/date-range.tpl.html'
+        };
+    }]);
+
+
+    /**
+     * 日期时间 选择器
+     */
+    date.directive('datetimePicker', [function () {
+        return {
+            replace    : true,
+            templateUrl: 'common/components/date/datetime-picker.tpl.html'
         };
     }]);
 
