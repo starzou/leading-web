@@ -16,9 +16,18 @@
             </div>
             <div class="portlet-body">
                 <a class="btn blue btn-sm" ng-click="showAlert();"><i class="fa fa-pencil"></i> Alert </a>
-                <div date-range></div>
 
-                <div datetime-picker></div>
+                <div date-range></div>
+                <br>
+
+
+                <div>
+                    name :<input type="text" ng-model="param.name"/><br>
+                    birthday :
+                    <div datetime-picker="birthday" target="param"></div>
+
+                    <pre>{{param | json}}</pre>
+                </div>
             </div>
         </div>
     </div>

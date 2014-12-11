@@ -48,12 +48,32 @@
 
     /**
      * 日期时间 选择器
+     * scope.target : 表示要绑定的对象
      */
     date.directive('datetimePicker', [function () {
         return {
             replace    : true,
-            scope      : true,
-            templateUrl: 'common/components/date/datetime-picker.tpl.html'
+            scope      : {
+                target: '='
+            },
+            templateUrl: 'common/components/date/datetime-picker.tpl.html',
+            link       : function postLink($scope, $element, $attr) {
+                /**
+                 * 选择 日期,时间
+                 */
+                $scope.$watch('dateTime', function (newValue, oldValue) {
+                    if (newValue === oldValue && newValue === undefined) {
+                        return;
+                    }
+
+                    if (!$scope.target) {
+                        $scope.target = {};
+                    }
+
+                    // 绑定时间
+                    $scope.target[$attr.datetimePicker] = $scope.dateTime;
+                });
+            }
         };
     }]);
 
