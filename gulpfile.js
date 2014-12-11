@@ -13,6 +13,7 @@ var minifyCss = require('gulp-minify-css');
 var rev = require('gulp-rev');
 var del = require('del');
 var runSequence = require('run-sequence');
+var templateCache = require('gulp-angular-templatecache');
 
 /**
  * 主目录 路径
@@ -66,6 +67,15 @@ gulp.task('copy-directive-templates', function () {
         .pipe(usemin({
             html: [minifyHtml({empty: true, quotes: true})]
         }))
+        .pipe(gulp.dest(root + 'dist/common'));
+});
+
+/**
+ * 混合 common文件夹下的 html模板文件, 放入dist/common/templates.js中
+ */
+gulp.task('mix-common-templates', function () {
+    gulp.src([root + 'src/common/**/*.html'])
+        .pipe(templateCache({root: 'common', module: 'commonTemplates'}))
         .pipe(gulp.dest(root + 'dist/common'));
 });
 
