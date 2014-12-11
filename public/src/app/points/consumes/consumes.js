@@ -16,9 +16,9 @@
         });
     }]);
 
-    consumes.controller('ConsumesController', ['$scope', '$alert', function ($scope, $alert) {
+    consumes.controller('ConsumesController', ['$scope', '$alert', 'spinner', function ($scope, $alert, spinner) {
         $scope.title = '积分消费模块';
-        
+
         $scope.showAlert = function () {
             $alert({
                 title    : '警告!',
@@ -28,6 +28,13 @@
                 animation: 'am-fade-and-slide-top',
                 duration : 3
             });
+        };
+
+
+        var i = 0;
+        $scope.showSpinner = function () {
+            i % 2 === 0 ? spinner.show() : spinner.hide();
+            i++;
         };
     }]);
 
