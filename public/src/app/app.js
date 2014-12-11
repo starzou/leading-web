@@ -10,7 +10,7 @@
     /**
      * App 主模块
      */
-    var app = angular.module('App', ['ngRoute', 'ngResource', 'ngLocale', 'ngAnimate', 'services', 'components', 'directives', 'home', 'members', 'points']);
+    var app = angular.module('App', ['ngRoute', 'ngResource', 'ngLocale', 'ngAnimate', 'templates', 'services', 'components', 'directives', 'home', 'members', 'points']);
 
     /**
      * App 配置

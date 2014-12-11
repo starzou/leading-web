@@ -28,8 +28,8 @@ var indexPath = 'src/index3.html';
 /**
  * 清空 dist目录
  */
-gulp.task('clean', function (cb) {
-    del(root + 'dist', cb);
+gulp.task('clean', function (callback) {
+    del(root + 'dist', callback);
 });
 
 /**
@@ -75,7 +75,7 @@ gulp.task('copy-common-templates', function () {
  */
 gulp.task('mix-common-templates', function () {
     gulp.src([root + 'src/common/**/*.html'])
-        .pipe(templateCache({root: 'common', module: 'commonTemplates'}))
+        .pipe(templateCache({root: 'common'}))
         .pipe(gulp.dest(root + 'dist/common'));
 });
 
@@ -96,6 +96,13 @@ gulp.task('minimize-index', function () {
  * 默认任务 : 依次执行 下面任务
  * 使用 命令行: gulp运行
  */
-gulp.task('default', function (cb) {
-    runSequence('clean', ['minimize-index', 'copy-controller-templates', 'copy-common-templates', 'copy-assets', 'copy-fonts'], cb);
+gulp.task('default', function (callback) {
+    runSequence('clean', ['mix-common-templates', 'copy-controller-templates', 'copy-assets', 'copy-fonts'], callback);
+});
+
+/**
+ * 编译
+ */
+gulp.task('build', function (callback) {
+    runSequence('minimize-index', callback);
 });
