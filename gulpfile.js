@@ -60,9 +60,9 @@ gulp.task('copy-controller-templates', function () {
 });
 
 /**
- * 复制,压缩 指令html模板文件
+ * 复制,压缩 common文件夹下的 html模板文件
  */
-gulp.task('copy-directive-templates', function () {
+gulp.task('copy-common-templates', function () {
     gulp.src(root + 'src/common/**/*.html')
         .pipe(usemin({
             html: [minifyHtml({empty: true, quotes: true})]
@@ -97,5 +97,5 @@ gulp.task('minimize-index', function () {
  * 使用 命令行: gulp运行
  */
 gulp.task('default', function (cb) {
-    runSequence('clean', ['minimize-index', 'copy-controller-templates', 'copy-directive-templates', 'copy-assets', 'copy-fonts'], cb);
+    runSequence('clean', ['minimize-index', 'copy-controller-templates', 'copy-common-templates', 'copy-assets', 'copy-fonts'], cb);
 });
