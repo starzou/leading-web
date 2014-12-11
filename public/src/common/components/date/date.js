@@ -18,7 +18,7 @@
             dateFormat: 'yyyy-MM-dd',
             animation : 'am-fade-and-slide-top',
             startWeek : 1,
-            autoclose : false,
+            autoclose : true,
             maxDate   : Date.now()
         });
 
@@ -29,6 +29,7 @@
         angular.extend($timepickerProvider.defaults, {
             timeFormat: 'HH:mm',
             animation : 'am-fade-and-slide-top',
+            minuteStep: '1',
             length    : 7
         });
     }]);
@@ -51,6 +52,7 @@
     date.directive('datetimePicker', [function () {
         return {
             replace    : true,
+            scope      : true,
             templateUrl: 'common/components/date/datetime-picker.tpl.html'
         };
     }]);
