@@ -16,17 +16,22 @@
         });
     }]);
 
-    consumes.controller('ConsumesController', ['$scope', '$alert', 'spinner', function ($scope, $alert, spinner) {
+    consumes.controller('ConsumesController', ['$scope', '$alert', 'spinner', '_alert', function ($scope, $alert, spinner, _alert) {
         $scope.title = '积分消费模块';
 
         $scope.showAlert = function () {
-            $alert({
-                title    : '警告!',
-                content  : '服务器磁盘不足!',
-                placement: 'top-right',
-                type     : 'info',
-                animation: 'am-fade-and-slide-top',
-                duration : 3
+            //$alert({
+            //    title    : '警告!',
+            //    content  : '服务器磁盘不足!',
+            //    placement: 'top-right',
+            //    type     : 'info',
+            //    animation: 'am-fade-and-slide-top',
+            //    duration : 3
+            //});
+
+            _alert.danger({
+                title  : '警告!',
+                content: '服务器磁盘不足!'
             });
         };
 
