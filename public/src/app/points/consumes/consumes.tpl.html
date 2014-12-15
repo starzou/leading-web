@@ -6,40 +6,91 @@
                     <i class="fa fa-gift"></i>基础组件封装
                 </div>
                 <div class="tools">
-                    <a href="javascript:;" class="collapse">
-                    </a>
-                    <a href="#portlet-config" data-toggle="modal" class="config">
-                    </a>
-                    <a href="javascript:;" class="reload">
-                    </a>
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="#portlet-config" data-toggle="modal" class="config"></a>
+                    <a href="javascript:;" class="reload"></a>
                 </div>
             </div>
             <div class="portlet-body">
                 <a class="btn blue btn-sm" ng-click="showAlert();"><i class="fa fa-pencil"></i> 提醒框 </a>
                 <a class="btn blue btn-sm" ng-click="showConfirm();"><i class="fa fa-pencil"></i> 确认框 </a>
                 <a class="btn blue btn-sm" ng-click="showSpinner();"><i class="fa fa-pencil"></i> spinner </a>
+            </div>
+        </div>
 
-                <div>
-                    <p>
-                        时间区间
-
-                    <div date-range target="param"></div>
-                    </p>
-
-                    <p>
-                        name :<input type="text" ng-model="param.name"/>
-                    </p>
-
-                    <p>
-                        日期时间
-
-                    <div datetime-picker="birthday" target="param"></div>
-
-                    </p>
-
-                    参数
-                    <pre>{{param | json}}</pre>
+        <div class="portlet light bg-inverse">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject font-red-sunglo bold uppercase">表单示例</span>
                 </div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <form name="eventForm" validate-form class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">活动主题</label>
+                            <div class="col-md-4">
+                                <input type="text" ng-model="param.title" required ng-minlength="2" ng-maxlength="50" class="form-control" placeholder="活动主题">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">活动时间</label>
+                            <div class="col-md-4">
+                                <div date-range target="param"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">报名截止时间</label>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <div datetime-picker="deadline" target="param"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">主办人邮箱</label>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                    <input type="email" ng-model="param.email" required class="form-control" placeholder="邮箱地址">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">活动链接</label>
+                            <div class="col-md-4">
+                                <input type="url" ng-model="param.url" required class="form-control" placeholder="活动链接"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">活动描述</label>
+                            <div class="col-md-4">
+                                <textarea ng-model="param.intro" class="form-control" placeholder="活动描述"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-4">
+                                <button type="submit" class="btn green">提交</button>
+                                <button type="button" class="btn default">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+
+        <div class="portlet light bg-inverse">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject font-red-sunglo bold uppercase">表单参数</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <pre>{{param | json}}</pre>
             </div>
         </div>
     </div>
