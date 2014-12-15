@@ -16,7 +16,7 @@
         });
     }]);
 
-    consumes.controller('ConsumesController', ['$scope', '$alert', 'spinner', '_alert', function ($scope, $alert, spinner, _alert) {
+    consumes.controller('ConsumesController', ['$scope', '$alert', 'spinner', '_alert', '_confirm', function ($scope, $alert, spinner, _alert, _confirm) {
         $scope.title = '积分消费模块';
 
         $scope.showAlert = function () {
@@ -32,6 +32,18 @@
             _alert.danger({
                 title  : '警告!',
                 content: '服务器磁盘不足!'
+            });
+
+            var confirm = _confirm({
+                title       : '删除提示',
+                content     : '您确认删除吗？',
+                clickedClose: true
+            }, function () {
+                console.log('ok...');
+                confirm.hide();
+            }, function () {
+                console.log('cancel...');
+                confirm.hide();
             });
         };
 
