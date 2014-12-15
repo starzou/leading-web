@@ -1,18 +1,18 @@
 /**
- * @class alert
- * @description 弹出框
+ * @class dialog
+ * @description 封装对话框
  * @time 2014-12-12 17:28
  * @author StarZou
  **/
 (function (window, document) {
     'use strict';
 
-    var alert = angular.module('components.alert', ['mgcrea.ngStrap']);
+    var dialog = angular.module('components.dialog', ['mgcrea.ngStrap']);
 
     /**
      * 配置 $alert 控件
      */
-    alert.config(['$alertProvider', function ($alertProvider) {
+    dialog.config(['$alertProvider', function ($alertProvider) {
         angular.extend($alertProvider.defaults, {
             animation: 'am-fade-and-slide-top',
             placement: 'top-right',
@@ -22,8 +22,9 @@
 
     /**
      * 包装 $alert, 为自己服务
+     * 提醒框组件
      */
-    alert.provider('_alert', function () {
+    dialog.provider('_alert', function () {
         var me = {};
 
         this.$get = ['$alert', function ($alert) {
