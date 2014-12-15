@@ -33,7 +33,9 @@
                 title  : '警告!',
                 content: '服务器磁盘不足!'
             });
+        };
 
+        $scope.showConfirm = function () {
             var confirm = _confirm({
                 title       : '删除提示',
                 content     : '您确认删除吗？',
@@ -46,7 +48,6 @@
                 confirm.hide();
             });
         };
-
 
         var i = 0;
         $scope.showSpinner = function () {
