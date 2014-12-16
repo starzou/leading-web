@@ -59,9 +59,9 @@
                 if (ngModelController.$invalid) {
                     var types = Object.keys(ngModelController.$error),
                         type = types[0];
-                    this.showTooltip(field, VALIDATE[type]);
+                    validator.showTooltip(field, VALIDATE[type]);
                 } else {
-                    this.hideTooltip(field);
+                    validator.hideTooltip(field);
                 }
             },
 
