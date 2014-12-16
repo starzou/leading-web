@@ -65,7 +65,7 @@
                 }
             },
 
-            initValidator: function (ngFormController, nameFields) {
+            init: function (ngFormController, nameFields) {
                 angular.forEach(nameFields, function (field, name) {
                     field.addEventListener('keyup', function (event) {
                         validator.validateField(ngFormController, name, field);
@@ -78,12 +78,10 @@
         return {
             restrict: 'A',
             compile : function ($element, $attr) {
-
                 /**
                  * 为表单添加了ng-model属性的字段 绑定 name,
                  * 以便于angular 为其创建 ngModelController, 实现字段校验
                  */
-
                 var formElement = $element[0],
                     ngModelAttributeName = 'ng-model',
 
@@ -109,14 +107,15 @@
                 return function ($scope, $element, $attr) {
                     var ngFormController = $scope[$attr.name]; // 取得$scope 中的 ngFormController
 
-                    $element.on('submit', function (event) {
+                    $element.on('submit', function () {
                         validator.validateForm(ngFormController, nameFields);
                     });
 
                     $element.on('reset', function (event) {
 
                     });
-                    validator.initValidator(ngFormController, nameFields);
+
+                    validator.init(ngFormController, nameFields);
                 };
             }
         }
