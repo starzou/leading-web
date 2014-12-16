@@ -54,6 +54,10 @@
             i % 2 === 0 ? spinner.show() : spinner.hide();
             i++;
         };
+
+        $scope.submit = function (param) {
+            console.log('submit...', param);
+        };
     }]);
 
 })(window, document);

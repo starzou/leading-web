@@ -131,9 +131,18 @@
 
                 return function ($scope, $element, $attr) {
                     var ngFormController = $scope[$attr.name]; // 取得$scope 中的 ngFormController
+                    var fn = $parse($attr['validateForm']); // 验证成功要执行的方法
 
                     $element.on('submit', function () {
                         validator.validateForm(ngFormController, nameFields);
+
+                        // 验证成功
+                        if (ngFormController.$valid) {
+                            var callback = function () {
+                                fn($scope, {$event: event});
+                            };
+                            $scope.$apply(callback);
+                        }
                     });
 
                     $element.on('reset', function (event) {
