@@ -30,19 +30,41 @@
         var validator = {
 
             showTooltip: function (inputField, message) {
-                var tooltipInner = inputField.parentNode.querySelector('.tooltip .tooltip-inner');
-                if (tooltipInner) {
-                    tooltipInner.textContent = message;
+                //var tooltipInner = inputField.parentNode.querySelector('.tooltip .tooltip-inner');
+                //if (tooltipInner) {
+                //    tooltipInner.textContent = message;
+                //} else {
+                //    angular.element(inputField).after(toolTipTemplate.replace('_title_', message));
+                //}
+
+                var tooltip = inputField.data;
+                if (tooltip) {
+                    var $scope = tooltip.$scope;
+                    $scope.$apply(function () {
+                        $scope.title = message;
+                    });
                 } else {
-                    angular.element(inputField).after(toolTipTemplate.replace('_title_', message));
+                    tooltip = $tooltip(angular.element(inputField), {
+                        title    : message,
+                        trigger  : 'manual',
+                        placement: 'top',
+                        show     : true
+                    });
+                    inputField.data = tooltip;
                 }
             },
 
             hideTooltip: function (inputField) {
-                var parent = inputField.parentNode,
-                    tooltip = parent.querySelector('.tooltip');
+                //var parent = inputField.parentNode,
+                //    tooltip = parent.querySelector('.tooltip');
+                //if (tooltip) {
+                //    parent.removeChild(tooltip);
+                //}
+
+                var tooltip = inputField.data;
                 if (tooltip) {
-                    parent.removeChild(tooltip);
+                    tooltip.hide();
+                    inputField.data = null;
                 }
             },
 
