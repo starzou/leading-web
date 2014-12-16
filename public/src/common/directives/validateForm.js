@@ -26,54 +26,49 @@
      * 表单验证指令, 该指令在 form元素上使用
      */
     validateForm.directive('validateForm', ['$tooltip', 'VALIDATE', function ($tooltip, VALIDATE) {
-        var me = {
-            lastTooltips: [],
-            validateFn  : function ($element, ngFormController) {
-                var me = this,
-                    formElement = $element[0], // form元素
-                    formField,
-                    tooltip,
-                    name;
+        var toolTipTemplate = '<div class="tooltip right fade in"><div class="tooltip-arrow" style="border-right-color: #d9534f;"></div><div class="tooltip-inner" style="background-color: #d9534f;">_title_</div></div>';
+        var validator = {
 
-                /**
-                 * 先移除上次的提示
-                 */
-                angular.forEach(me.lastTooltips, function (tooltip) {
-                    tooltip.hide();
-                })
+            showTooltip: function (inputField, message) {
+                var tooltipInner = inputField.parentNode.querySelector('.tooltip .tooltip-inner');
+                if (tooltipInner) {
+                    tooltipInner.textContent = message;
+                } else {
+                    angular.element(inputField).after(toolTipTemplate.replace('_title_', message));
+                }
+            },
 
-                /**
-                 * 进行验证, 显示错误提示
-                 */
-                angular.forEach(ngFormController.$error, function (ngModelControllers, type) {
+            hideTooltip: function (inputField) {
+                var parent = inputField.parentNode,
+                    tooltip = parent.querySelector('.tooltip');
+                if (tooltip) {
+                    parent.removeChild(tooltip);
+                }
+            },
 
-                    angular.forEach(ngModelControllers, function (ngModelController) {
-                        name = ngModelController.$name;
-                        formField = formElement.querySelector('[name="' + name + '"]');
-
-                        /**
-                         * 显示提示
-                         */
-                        tooltip = $tooltip(angular.element(formField), {
-                            title    : VALIDATE[type],
-                            trigger  : 'manual',
-                            placement: 'right',
-                            show     : true
-                        });
-
-                        me.lastTooltips.push(tooltip);
-                    });
-
+            validateForm: function (ngFormController, nameFields) {
+                angular.forEach(nameFields, function (field, name) {
+                    validator.validateField(ngFormController, name, field)
                 });
             },
 
-            initValidate: function ($element, ngFormController) {
-                var formFields = $element[0].querySelectorAll('[ng-model]'),
-                    me = this;
+            validateField: function (ngFormController, name, field) {
+                var ngModelController = ngFormController[name];
 
-                angular.forEach(formFields, function (formField) {
-                    formField.addEventListener('keyup', function (event) {
-                        me.validateFn($element, ngFormController);
+                // 验证是否通过
+                if (ngModelController.$invalid) {
+                    var types = Object.keys(ngModelController.$error),
+                        type = types[0];
+                    this.showTooltip(field, VALIDATE[type]);
+                } else {
+                    this.hideTooltip(field);
+                }
+            },
+
+            initValidator: function (ngFormController, nameFields) {
+                angular.forEach(nameFields, function (field, name) {
+                    field.addEventListener('keyup', function (event) {
+                        validator.validateField(ngFormController, name, field);
                         event.stopPropagation();
                     }, false);
                 });
@@ -91,13 +86,19 @@
 
                 var formElement = $element[0],
                     ngModelAttributeName = 'ng-model',
-                    formFields = formElement.querySelectorAll('[' + ngModelAttributeName + ']'),
-                    formField,
-                    index;
 
-                for (index = 0; index < formFields.length; index++) {
-                    formField = formFields[index];
-                    formField.name = formField.getAttribute(ngModelAttributeName); // 设置 表单字段的name 为 ng-model属性值
+                    inputFields = formElement.querySelectorAll('[' + ngModelAttributeName + ']'),
+                    inputField,
+                    length,
+                    index,
+                    name,
+                    nameFields = {};
+
+                for (index = 0, length = inputFields.length; index < length; index++) {
+                    inputField = inputFields[index]; // 当前Field
+                    name = inputField.getAttribute(ngModelAttributeName); // 取得 inputField 的 ng-model属性值
+                    inputField.name = name; // 设置 inputField.name 为 ng-model属性值
+                    nameFields[name] = inputField; // {name : inputField} 形式 保存在 names中
                 }
 
                 /**
@@ -105,19 +106,17 @@
                  */
                 formElement.setAttribute('novalidate', 'novalidate');
 
-
                 return function ($scope, $element, $attr) {
-                    var ngFormController = $scope[$attr.name]; // 取得ngFormController
+                    var ngFormController = $scope[$attr.name]; // 取得$scope 中的 ngFormController
 
                     $element.on('submit', function (event) {
-                        me.validateFn($element, ngFormController);
+                        validator.validateForm(ngFormController, nameFields);
                     });
 
                     $element.on('reset', function (event) {
 
                     });
-
-                    me.initValidate($element, ngFormController);
+                    validator.initValidator(ngFormController, nameFields);
                 };
             }
         }
