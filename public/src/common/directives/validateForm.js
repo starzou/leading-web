@@ -48,6 +48,7 @@
                         title    : message,
                         trigger  : 'manual',
                         placement: 'top',
+                        animation: "am-fade-and-slide-top",
                         show     : true
                     });
                     inputField.data = tooltip;
