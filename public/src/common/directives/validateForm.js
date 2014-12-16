@@ -12,7 +12,7 @@
     /**
      * 提示信息
      */
-    validateForm.constant('VALIDATE', {
+    validateForm.constant('validateMessage', {
         required : '必填！',
         number   : "必须为数字！",
         minlength: '太短！',
@@ -25,8 +25,8 @@
     /**
      * 表单验证指令, 该指令在 form元素上使用
      */
-    validateForm.directive('validateForm', ['$tooltip', 'VALIDATE', function ($tooltip, VALIDATE) {
-        var toolTipTemplate = '<div class="tooltip right fade in"><div class="tooltip-arrow" style="border-right-color: #d9534f;"></div><div class="tooltip-inner" style="background-color: #d9534f;">_title_</div></div>';
+    validateForm.directive('validateForm', ['$parse', '$tooltip', 'validateMessage', function ($parse, $tooltip, validateMessage) {
+        //var toolTipTemplate = '<div class="tooltip right fade in"><div class="tooltip-arrow" style="border-right-color: #d9534f;"></div><div class="tooltip-inner" style="background-color: #d9534f;">_title_</div></div>';
         var validator = {
 
             showTooltip: function (inputField, message) {
@@ -81,7 +81,10 @@
                 if (ngModelController.$invalid) {
                     var types = Object.keys(ngModelController.$error),
                         type = types[0];
-                    validator.showTooltip(field, VALIDATE[type]);
+
+                    var message = field.getAttribute('message');
+                    message = $parse(message)();
+                    validator.showTooltip(field, message && message[type] || validateMessage[type]);
                 } else {
                     validator.hideTooltip(field);
                 }
