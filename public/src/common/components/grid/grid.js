@@ -19,7 +19,6 @@
                 for (; start <= end; start = start + step) {
                     ranges.push(start);
                 }
-                console.log(ranges);
                 return ranges;
             }
         };
@@ -27,7 +26,7 @@
         return me;
     }]);
 
-    grid.directive('grid', [function () {
+    grid.directive('grid', ['$resource', function ($resource) {
         return {
             restrict   : 'A',
             scope      : true,
@@ -41,6 +40,21 @@
                     $scope.columns = gridOptions.columns;
                     $scope.data = gridOptions.data;
                     $scope.pager = gridOptions.pager;
+
+                    if (gridOptions.url) {
+                        var DataSource = $resource(gridOptions.url);
+                        $scope.query = function () {
+                            var param = {};
+                            angular.extend(param, $scope[gridOptions.param || 'param'], $scope.pager);
+
+                            DataSource.get(param, function (data) {
+                                $scope.data = data.data;
+                                $scope.pager = data.pager;
+                            });
+
+                        };
+                        $scope.query();
+                    }
                 };
             }
         }
@@ -88,6 +102,7 @@
                     $scope.selectPage = function (currentPage) {
                         $scope.pager.currentPage = currentPage;
                         console.log($scope.pager);
+                        $scope.query();
                     };
 
                     /**
@@ -96,7 +111,12 @@
                     $scope.rangeTotalPages = function () {
                         $scope.totalPages = gridUtil.range($scope.pager.totalPages);
                     };
-                    $scope.rangeTotalPages();
+                    $scope.$watch('pager', function (newValue, oldValue) {
+                        if (newValue === oldValue && newValue === undefined) {
+                            return;
+                        }
+                        $scope.rangeTotalPages();
+                    });
 
                     /**
                      * 没有上一页

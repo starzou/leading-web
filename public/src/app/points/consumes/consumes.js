@@ -88,10 +88,9 @@
             }]
         };
 
+        $scope.param = {name: '张三', age: 23};
         $scope.gridOptions2 = {
-            data   : data.data, // 数据
-            pager  : data.pager, // 分页信息,
-            url    : '',
+            url    : '/rest/users',
             columns: [{ // 列配置
                 displayName : '姓名',
                 cellTemplate: '<span ng-bind="entity.name + 2"></span>'

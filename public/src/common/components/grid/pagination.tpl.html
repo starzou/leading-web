@@ -1,5 +1,5 @@
 <div style="float: right;margin: 0;">
-    <ul class="pagination">
+    <ul class="pagination" ng-if="pager">
         <li class="previous" ng-class="{disabled : noPrevious()}">
             <a href="" ng-click="noPrevious() ? angular.noop : selectPage(pager.currentPage - 1)">
                 <i class="fa fa-angle-left"></i>
