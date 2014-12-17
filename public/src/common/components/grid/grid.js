@@ -9,6 +9,24 @@
 
     var grid = angular.module('components.grid', []);
 
+
+    grid.factory('gridUtil', [function () {
+        var me = {
+            range: function (end, start, step) {
+                step = step || 1; // 增量
+                start = start || 1; // 开始值
+                var ranges = [];
+                for (; start <= end; start = start + step) {
+                    ranges.push(start);
+                }
+                console.log(ranges);
+                return ranges;
+            }
+        };
+
+        return me;
+    }]);
+
     grid.directive('grid', [function () {
         return {
             restrict   : 'A',
@@ -20,6 +38,7 @@
                     console.log($scope, $attr);
 
                     $scope._gridOptions = $scope[$attr['grid'] || 'gridOptions'];
+                    $scope.pager = $scope._gridOptions.pager;
                 };
             }
         }
@@ -48,14 +67,12 @@
         }
     }]);
 
-    grid.directive('pagination', [function () {
+    grid.directive('pagination', ['gridUtil', function (gridUtil) {
         return {
             restrict   : 'A',
             templateUrl: 'common/components/grid/pagination.tpl.html',
             compile    : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
-                    $scope.pager = $scope._gridOptions.pager;
-
                     /**
                      * 选择 当前页
                      * @param currentPage
@@ -69,13 +86,7 @@
                      * 计算页码
                      */
                     $scope.rangeTotalPages = function () {
-                        var totalPages = [],
-                            length = $scope.pager.totalPages,
-                            index;
-                        for (index = 1; index <= length; index++) {
-                            totalPages.push(index);
-                        }
-                        $scope.totalPages = totalPages;
+                        $scope.totalPages = gridUtil.range($scope.pager.totalPages);
                     };
                     $scope.rangeTotalPages();
 

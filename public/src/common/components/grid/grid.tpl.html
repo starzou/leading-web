@@ -25,7 +25,7 @@
         </table>
         <div class="row">
             <div class="col-md-5 col-sm-12">
-                <div style="padding-top: 8px;">Showing 1 to 10 of 43 entries</div>
+                <div style="padding-top: 8px;" ng-bind-template="Showing {{((pager.currentPage - 1) * pager.pageSize) + 1}} to {{pager.currentPage * pager.pageSize}} of {{pager.totalItems}} entries"></div>
             </div>
             <div class="col-md-7 col-sm-12" pagination></div>
         </div>
