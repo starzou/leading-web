@@ -47,4 +47,53 @@
             }
         }
     }]);
+
+    grid.directive('pagination', [function () {
+        return {
+            restrict   : 'A',
+            templateUrl: 'common/components/grid/pagination.tpl.html',
+            compile    : function ($element, $attr) {
+                return function ($scope, $element, $attr) {
+                    $scope.pager = $scope._gridOptions.pager;
+
+                    /**
+                     * 选择 当前页
+                     * @param currentPage
+                     */
+                    $scope.selectPage = function (currentPage) {
+                        $scope.pager.currentPage = currentPage;
+                        console.log($scope.pager);
+                    };
+
+                    /**
+                     * 计算页码
+                     */
+                    $scope.rangeTotalPages = function () {
+                        var totalPages = [],
+                            length = $scope.pager.totalPages,
+                            index;
+                        for (index = 1; index <= length; index++) {
+                            totalPages.push(index);
+                        }
+                        $scope.totalPages = totalPages;
+                    };
+                    $scope.rangeTotalPages();
+
+                    /**
+                     * 没有上一页
+                     */
+                    $scope.noPrevious = function () {
+                        return $scope.pager.currentPage == 1;
+                    };
+
+                    /**
+                     * 没有下一页
+                     */
+                    $scope.noNext = function () {
+                        return $scope.pager.currentPage == $scope.pager.totalPages;
+                    };
+                };
+            }
+        }
+    }]);
 })(window, document);
