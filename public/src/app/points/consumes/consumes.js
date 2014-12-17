@@ -74,9 +74,9 @@
         };
 
         $scope.gridOptions = {
-            data      : data.data, // 数据
-            pager     : data.pager, // 分页信息
-            columnDefs: [{ // 列配置
+            data   : data.data, // 数据
+            pager  : data.pager, // 分页信息
+            columns: [{ // 列配置
                 displayName : '姓名',
                 cellTemplate: '<span ng-bind="entity.name + 1"></span>'
             }, {
@@ -89,9 +89,9 @@
         };
 
         $scope.gridOptions2 = {
-            data      : data.data, // 数据
-            pager     : data.pager, // 分页信息
-            columnDefs: [{ // 列配置
+            data   : data.data, // 数据
+            pager  : data.pager, // 分页信息
+            columns: [{ // 列配置
                 displayName : '姓名',
                 cellTemplate: '<span ng-bind="entity.name + 2"></span>'
             }, {
