@@ -35,9 +35,12 @@
             templateUrl: 'common/components/grid/grid.tpl.html',
             compile    : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
-                    console.log($scope, $attr);
-                    $scope._gridOptions = angular.copy($scope[$attr['grid'] || 'gridOptions']); // 取得 $scope中 gridOptions
-                    $scope.pager = $scope._gridOptions.pager;
+                    var gridOptions = angular.copy($scope[$attr['grid'] || 'gridOptions']);// 取得 父$scope中 gridOptions
+                    $scope._gridOptions = gridOptions;
+
+                    $scope.columns = gridOptions.columns;
+                    $scope.data = gridOptions.data;
+                    $scope.pager = gridOptions.pager;
                 };
             }
         }
@@ -49,12 +52,12 @@
             restrict: 'A',
             compile : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
-                    var cellTemplate, element;
+                    var cellTemplate, element, column = $scope.column;
 
-                    if ($scope.column.field) {
+                    if (column.field) {
                         cellTemplate = '<span ng-bind="entity[column.field]"></span>';
-                    } else if ($scope.column.cellTemplate) {
-                        cellTemplate = $scope.column.cellTemplate;
+                    } else if (column.cellTemplate) {
+                        cellTemplate = column.cellTemplate;
                     }
 
                     console.log(cellTemplate);
