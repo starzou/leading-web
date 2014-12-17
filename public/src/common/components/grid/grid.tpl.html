@@ -21,7 +21,7 @@
                 <tr ng-repeat="entity in data track by $index" grid-row></tr>
             </tbody>
         </table>
-        <div class="row">
+        <div class="row" ng-if="_gridOptions.url">
             <div class="col-md-5 col-sm-12">
                 <div style="padding-top: 8px;" ng-bind-template="Showing {{((pager.currentPage - 1) * pager.pageSize) + 1}} to {{pager.currentPage * pager.pageSize}} of {{pager.totalItems}} entries"></div>
             </div>
