@@ -72,13 +72,28 @@
                 totalPages : 7
             }
         };
+
         $scope.gridOptions = {
             data      : data.data, // 数据
             pager     : data.pager, // 分页信息
             columnDefs: [{ // 列配置
                 displayName : '姓名',
-                //field      : 'name'
                 cellTemplate: '<span ng-bind="entity.name + 1"></span>'
+            }, {
+                displayName: '性别',
+                field      : 'sex'
+            }, {
+                displayName: '年龄',
+                field      : 'age'
+            }]
+        };
+
+        $scope.gridOptions2 = {
+            data      : data.data, // 数据
+            pager     : data.pager, // 分页信息
+            columnDefs: [{ // 列配置
+                displayName : '姓名',
+                cellTemplate: '<span ng-bind="entity.name + 2"></span>'
             }, {
                 displayName: '性别',
                 field      : 'sex'

@@ -36,8 +36,7 @@
             compile    : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
                     console.log($scope, $attr);
-
-                    $scope._gridOptions = $scope[$attr['grid'] || 'gridOptions'];
+                    $scope._gridOptions = angular.copy($scope[$attr['grid'] || 'gridOptions']); // 取得 $scope中 gridOptions
                     $scope.pager = $scope._gridOptions.pager;
                 };
             }
