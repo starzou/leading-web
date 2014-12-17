@@ -47,22 +47,28 @@
     }]);
 
 
-    grid.directive('gridCell', ['$compile', function ($compile) {
+    grid.directive('gridRow', ['$compile', function ($compile) {
         return {
             restrict: 'A',
             compile : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
-                    var cellTemplate, element, column = $scope.column;
+                    var template = '',
+                        element,
+                        columns = $scope.columns,
+                        column,
+                        index,
+                        length;
 
-                    if (column.field) {
-                        cellTemplate = '<span ng-bind="entity[column.field]"></span>';
-                    } else if (column.cellTemplate) {
-                        cellTemplate = column.cellTemplate;
+                    for (index = 0, length = columns.length; index < length; index++) {
+                        column = columns[index];
+                        if (column.field) {
+                            template += '<td ng-bind="entity.' + column.field + '"></td>';
+                        } else if (column.cellTemplate) {
+                            template += '<td>' + column.cellTemplate + '</td>';
+                        }
                     }
 
-                    console.log(cellTemplate);
-
-                    element = $compile(cellTemplate)($scope);
+                    element = $compile(template)($scope);
                     $element.append(element);
                 };
             }
