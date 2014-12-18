@@ -39,6 +39,9 @@ router.get('/', function (request, response) {
  */
 router.get('/users', function (request, response) {
     data.pager.currentPage = +request.query.currentPage || 1;
+    data.data.forEach(function (element) {
+        element.name = element.name.substring(0, 2) + '_' + data.pager.currentPage;
+    });
     response.send(data);
 });
 

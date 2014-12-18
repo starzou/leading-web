@@ -88,12 +88,12 @@
             }]
         };
 
-        $scope.param = {name: '张三', age: 23};
+        //$scope.param = {name: '张三', age: 23};
         $scope.gridOptions2 = {
             url    : '/rest/users',
             columns: [{ // 列配置
                 displayName : '姓名',
-                cellTemplate: '<span ng-bind="entity.name + 2"></span>'
+                cellTemplate: '<span ng-bind="entity.name"></span>'
             }, {
                 displayName: '性别',
                 field      : 'sex'
