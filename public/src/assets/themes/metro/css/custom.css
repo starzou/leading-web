@@ -17,13 +17,3 @@ Rounded Portlets
 	border-radius: 0px 0px 4px 4px !important;
 }
 */
-
-.page-spinner-bar {
-    position: fixed;
-    z-index: 10051;
-    width: 100px;
-    top: 40%;
-    left: 50%;
-    margin-left: -55px;
-    text-align: center;
-}
