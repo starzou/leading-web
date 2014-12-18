@@ -10,7 +10,7 @@
     var menus = angular.module('resources.menus', ['ngResource']);
 
     menus.factory('Menus', ['$resource', function ($resource) {
-        var menus = $resource('/mock/menus.json');
+        var menus = $resource('/rest/menus');
         return menus
     }]);
 

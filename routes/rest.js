@@ -27,6 +27,59 @@ var data = {
     }
 };
 
+var menus = [
+    {
+        "menuName": "积分发放",
+        "url"     : "#/",
+        "subList" : [
+            {
+                "menuName": "消费送积分",
+                "url"     : "#/points/consumes",
+                "subList" : [
+                    {
+                        "menuName": "消费送积分",
+                        "url"     : "#/points/consumes"
+                    },
+                    {
+                        "menuName": "收藏送积分",
+                        "url"     : "#/points/consumes"
+                    },
+                    {
+                        "menuName": "评价送积分",
+                        "url"     : "#/points/consumes"
+                    }
+                ]
+            },
+            {
+                "menuName": "收藏送积分",
+                "url"     : "#/points/consumes"
+            },
+            {
+                "menuName": "评价送积分",
+                "url"     : "#/points/consumes"
+            }
+        ]
+    },
+    {
+        "menuName": "积分发放-2",
+        "url"     : "#/",
+        "subList" : [
+            {
+                "menuName": "消费送积分",
+                "url"     : "#/points/consumes"
+            },
+            {
+                "menuName": "收藏送积分",
+                "url"     : "#/points/consumes"
+            },
+            {
+                "menuName": "评价送积分",
+                "url"     : "#/points/consumes"
+            }
+        ]
+    }
+];
+
 /**
  * hello
  */
@@ -45,4 +98,10 @@ router.get('/users', function (request, response) {
     response.send(data);
 });
 
+/**
+ * menus
+ */
+router.get('/menus', function (request, response) {
+    response.send(menus);
+});
 module.exports = router;
