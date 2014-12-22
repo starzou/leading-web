@@ -23,7 +23,7 @@ var root = 'public/';
 /**
  * 首页 路径
  */
-var indexPath = 'src/index3.html';
+var indexPath = 'src/index.html';
 
 /**
  * 清空 dist目录
