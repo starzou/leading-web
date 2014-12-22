@@ -57,9 +57,9 @@
         return {
             restrict: 'A',
             compile : function ($element, $attr) {
-                console.log('compile', $element);
+                //console.log('compile', $element);
                 return function ($scope, $element, $attr) {
-                    console.log('link', $element, $scope);
+                    //console.log('link', $element, $scope);
 
                     Menus.query(function (menus) {
                         var html = menuUtil.createMenuElement(menus);

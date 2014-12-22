@@ -15,20 +15,6 @@
             replace    : true,
             templateUrl: 'common/components/container/sidebar/sidebar.tpl.html',
             scope      : true,
-            controller : ['$scope', function ($scope) {
-                $scope.menus = [{
-                    menuName: '积分发放',
-                    url     : '#/',
-                    subList : [{menuName: '消费送积分', url: '#/points/consumes'}, {
-                        menuName: '收藏送积分',
-                        url     : '#/points/consumes'
-                    }, {
-                        menuName: '评价送积分',
-                        url     : '#/points/consumes'
-                    }]
-                }];
-                console.log($scope);
-            }],
             compile    : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
                     var $body = angular.element(document.body),
