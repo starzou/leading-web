@@ -17,9 +17,10 @@
             templateUrl: 'common/components/progress/progress.tpl.html',
             compile    : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
-                    var $options = $scope[$attr['progress']]; // 读取配置
+                    var optionPropertyName = $attr['progress']; // options对象的属性名
+                    var $options = $scope[optionPropertyName]; // 读取配置
                     var options = angular.copy($options); // 复制配置
-                    
+
                     $scope.options = options; // 设置
 
                     $options.setWidth = function (width) {

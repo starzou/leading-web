@@ -109,6 +109,12 @@
         };
 
         $scope.progressOptions = progressOptions;
+
+        $scope.setProgress = function () {
+            var number = Math.floor(Math.random() * 100 + 1);
+            progressOptions.setWidth(number);
+            progressOptions.setTitle('完成 ' + number + '%');
+        };
     }]);
 
 })(window, document);
