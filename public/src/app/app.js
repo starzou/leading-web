@@ -30,8 +30,8 @@
     /**
      * 主控制器
      */
-    app.controller('AppController', ['$scope', function () {
-
+    app.controller('AppController', ['$scope', function ($scope) {
+        $scope.title = '忠诚度管理';
     }]);
 
 })(window, document);

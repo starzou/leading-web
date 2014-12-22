@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN" ng-app="App">
+<html lang="zh-CN" ng-app="App" ng-controller="AppController">
 
 <head>
     <meta charset="utf-8"/>
-    <title>Admin</title>
+    <title ng-bind="title"></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
@@ -31,7 +31,7 @@
     <!-- endbuild -->
 </head>
 
-<body class="page-header-fixed page-sidebar-fixed page-footer-fixed page-quick-sidebar-over-content" ng-controller="AppController" ng-cloak>
+<body class="page-header-fixed page-sidebar-fixed page-footer-fixed page-quick-sidebar-over-content" ng-cloak>
     <div page-spinner></div>
 
     <div page-header></div>
