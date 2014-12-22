@@ -19,17 +19,21 @@
                 return function ($scope, $element, $attr) {
                     var optionPropertyName = $attr['progress']; // options对象的属性名
                     var $options = $scope[optionPropertyName]; // 读取配置
-                    var options = angular.copy($options); // 复制配置
 
-                    $scope.options = options; // 设置
+                    $scope.options = $options; // 设置
 
-                    $options.setWidth = function (width) {
-                        options.width = width;
-                    };
+                    $scope.$watch('options.width', function (newValue, oldValue) {
+                        if (newValue === oldValue && newValue === undefined) {
+                            return;
+                        }
 
-                    $options.setTitle = function (title) {
-                        options.title = title;
-                    };
+                        // 完成函数
+                        (+newValue === 100) && $options.complete && $options.complete(newValue, $options);
+
+                        // 更新函数
+                        $options.update && $options.update(newValue, $options);
+                    });
+
                 };
             }
         }

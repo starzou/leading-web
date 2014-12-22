@@ -103,17 +103,23 @@
             }]
         };
 
-        var progressOptions = {
-            width: '90',
-            title: '完成 90%'
+        var progress = {
+            width   : '90',
+            title   : '完成 90%',
+            complete: function () {
+                console.log(arguments);
+            },
+            update  : function () {
+                console.log(arguments);
+            }
         };
 
-        $scope.progressOptions = progressOptions;
+        $scope.progress = progress;
 
         $scope.setProgress = function () {
             var number = Math.floor(Math.random() * 100 + 1);
-            progressOptions.setWidth(number);
-            progressOptions.setTitle('完成 ' + number + '%');
+            progress.width = number;
+            progress.title = ('已完成 ' + number + '%');
         };
     }]);
 
