@@ -105,7 +105,7 @@
 
         var progress = {
             width   : '90',
-            title   : '完成 90%',
+            type    : 'danger',
             complete: function () {
                 console.log(arguments);
             },

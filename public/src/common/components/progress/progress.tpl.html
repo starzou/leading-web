@@ -1,5 +1,5 @@
 <div class="progress progress-striped active">
-    <div class="progress-bar progress-bar-success" style="width: {{(options.width || '0') + '%'}}">
+    <div class="progress-bar" ng-class="options.type && 'progress-bar-' + options.type" style="width: {{(options.width || '0') + '%'}}">
         <span ng-if="options.title" ng-bind="options.title"></span>
     </div>
 </div>
