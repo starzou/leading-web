@@ -22,16 +22,19 @@
 
                     $scope.options = $options; // 设置
 
-                    $scope.$watch('options.width', function (newValue, oldValue) {
+                    $scope.$watch(optionPropertyName + '.width', function (newValue, oldValue) {
                         if (newValue === oldValue && newValue === undefined) {
                             return;
                         }
 
-                        // 完成函数
+                        // 调用完成函数
                         (+newValue === 100) && $options.complete && $options.complete(newValue, $options);
 
-                        // 更新函数
+                        // 调用更新函数
                         $options.update && $options.update(newValue, $options);
+
+                        // 更新title
+                        $options.title = ('已完成 ' + newValue + '%');
                     });
 
                 };

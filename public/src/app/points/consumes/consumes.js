@@ -119,7 +119,6 @@
         $scope.setProgress = function () {
             var number = Math.floor(Math.random() * 100 + 1);
             progress.width = number;
-            progress.title = ('已完成 ' + number + '%');
         };
     }]);
 
