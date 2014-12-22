@@ -102,6 +102,13 @@
                 field      : 'age'
             }]
         };
+
+        var progressOptions = {
+            width: '90',
+            title: '完成 90%'
+        };
+
+        $scope.progressOptions = progressOptions;
     }]);
 
 })(window, document);

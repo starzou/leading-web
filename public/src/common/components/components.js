@@ -7,6 +7,6 @@
 (function (window, document) {
     'use strict';
 
-    var components = angular.module('components', ['components.date', 'components.header', 'components.container', 'components.footer', 'components.spinner', 'components.dialog', 'components.grid']);
+    var components = angular.module('components', ['components.date', 'components.header', 'components.container', 'components.footer', 'components.spinner', 'components.dialog', 'components.grid', 'components.progress']);
 
 })(window, document);
