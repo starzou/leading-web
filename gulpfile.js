@@ -14,6 +14,7 @@ var rev = require('gulp-rev');
 var del = require('del');
 var runSequence = require('run-sequence');
 var templateCache = require('gulp-angular-templatecache');
+var replace = require('gulp-replace');
 
 /**
  * 主目录 路径
@@ -84,6 +85,7 @@ gulp.task('mix-common-templates', function () {
  */
 gulp.task('minimize-index', function () {
     return gulp.src(root + indexPath)
+        .pipe(replace('<!--common-templates.js-->', '<script src="../dist/common/templates.js"></script>'))
         .pipe(usemin({
             css : [minifyCss(), rev()],
             html: [minifyHtml({empty: true, quotes: true})],
