@@ -31,10 +31,10 @@
                     </div>
                 </td>
                 <td>
-                    <button class="btn blue start">
+                    <button class="btn blue start" ng-click="upload(file, $index)">
                         <i class="fa fa-upload"></i><span>开始</span>
                     </button>
-                    <button class="btn red cancel">
+                    <button class="btn red cancel" ng-click="cancel(file, $index)">
                         <i class="fa fa-ban"></i><span>取消</span>
                     </button>
                 </td>
