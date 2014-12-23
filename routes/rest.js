@@ -104,4 +104,12 @@ router.get('/users', function (request, response) {
 router.get('/menus', function (request, response) {
     response.send(menus);
 });
+
+/**
+ * files
+ */
+router.post('/files', function (req, res) {
+    console.log(req);
+    res.send({status: 200, message: 'OK'});
+});
 module.exports = router;
