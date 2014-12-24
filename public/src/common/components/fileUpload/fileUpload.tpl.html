@@ -26,10 +26,10 @@
             <div class="progress-extended">&nbsp;</div>
         </div>
     </div>
-    <table role="presentation" class="table table-striped clearfix" ng-show="uploader.queue.length">
+    <table role="presentation" class="table table-striped table-hover" ng-show="uploader.queue.length">
         <thead>
             <tr>
-                <th width="50%">文件名</th>
+                <th>文件名</th>
                 <th ng-show="uploader.isHTML5">文件大小</th>
                 <th ng-show="uploader.isHTML5">进度条</th>
                 <th>状态</th>
@@ -41,16 +41,16 @@
                 <td>
                     <strong ng-bind="item.file.name"></strong>
                 </td>
-                <td ng-show="uploader.isHTML5" nowrap ng-bind="(item.file.size/1024/1024 | number:2) + 'MB'"></td>
+                <td ng-show="uploader.isHTML5" nowrap ng-bind="(item.file.size/1024/1024 | number:2) + ' MB'"></td>
                 <td ng-show="uploader.isHTML5">
                     <div class="progress" style="margin-bottom: 0;">
                         <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
                     </div>
                 </td>
-                <td class="text-center">
-                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                <td>
+                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i> 成功</span>
+                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i> 已取消</span>
+                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i> 失败</span>
                 </td>
                 <td nowrap>
                     <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
