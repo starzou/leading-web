@@ -121,7 +121,7 @@
             progress.width = number;
         };
 
-        var uploader = $scope.uploader = new FileUploader({
+        var uploader = $scope.uploader3 = new FileUploader({
             url: '/rest/files'
         });
     }]);

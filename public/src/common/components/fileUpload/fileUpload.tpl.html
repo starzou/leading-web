@@ -1,41 +1,66 @@
 <div>
     <div class="row fileupload-buttonbar">
-        <div class="col-lg-7">
+        <div class="col-lg-4">
             <span class="btn green fileinput-button addFilesButton">
                 <i class="fa fa-plus"></i><span> 添加文件</span>
-                <input style="display: none;" type="file" name="files" multiple>
             </span>
-            <button type="submit" class="btn blue start startUploadFilesButton" ng-show="files && files.length">
-                <i class="fa fa-upload"></i><span> 开始上传</span>
-            </button>
-            <button type="reset" class="btn warning cancel cancelUploadFilesButton" ng-show="files && files.length">
-                <i class="fa fa-ban-circle"></i><span> 取消上传</span>
-            </button>
+            <span ng-show="uploader.queue.length">
+                <button type="button" class="btn blue start" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                    <i class="fa fa-upload"></i>
+                    <span> 上传所有 </span>
+                </button>
+                <button type="button" class="btn btn-warning cancel" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                    <i class="fa fa-ban-circle"></i>
+                    <span> 取消所有 </span>
+                </button>
+                <button type="button" class="btn red delete" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                    <i class="fa fa-trash"></i>
+                    <span> 移除所有 </span>
+                </button>
+            </span>
         </div>
-        <div class="col-lg-5 fileupload-progress fade">
-            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar progress-bar-success" style="width:80%;"></div>
+        <div class="col-lg-8 fileupload-progress" ng-show="uploader.queue.length">
+            <div class="progress progress-striped active" role="progressbar">
+                <div class="progress-bar progress-bar-success" ng-style="{ 'width': uploader.progress + '%' }"></div>
             </div>
             <div class="progress-extended">&nbsp;</div>
         </div>
     </div>
-    <table ng-if="files && files.length" role="presentation" class="table table-striped clearfix">
-        <tbody class="files">
-            <tr class="template-upload fade in" ng-repeat="file in files">
-                <td><span class="preview"></span></td>
-                <td><p class="name" ng-bind="file.name"></p></td>
+    <table role="presentation" class="table table-striped clearfix" ng-show="uploader.queue.length">
+        <thead>
+            <tr>
+                <th width="50%">文件名</th>
+                <th ng-show="uploader.isHTML5">文件大小</th>
+                <th ng-show="uploader.isHTML5">进度条</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in uploader.queue">
                 <td>
-                    <p class="size" ng-bind="file.size"></p>
-                    <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                        <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                    <strong ng-bind="item.file.name"></strong>
+                </td>
+                <td ng-show="uploader.isHTML5" nowrap ng-bind="(item.file.size/1024/1024 | number:2) + 'MB'"></td>
+                <td ng-show="uploader.isHTML5">
+                    <div class="progress" style="margin-bottom: 0;">
+                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
                     </div>
                 </td>
-                <td>
-                    <button class="btn blue start" ng-click="upload(file, $index)">
-                        <i class="fa fa-upload"></i><span>开始</span>
+                <td class="text-center">
+                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                </td>
+                <td nowrap>
+                    <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                        <span class="glyphicon glyphicon-upload"></span> 上传
                     </button>
-                    <button class="btn red cancel" ng-click="cancel(file, $index)">
-                        <i class="fa fa-ban"></i><span>取消</span>
+                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                        <span class="glyphicon glyphicon-ban-circle"></span> 取消
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                        <span class="glyphicon glyphicon-trash"></span> 移除
                     </button>
                 </td>
             </tr>
