@@ -16,7 +16,7 @@
         });
     }]);
 
-    consumes.controller('ConsumesController', ['$scope', '$alert', 'spinner', '_alert', '_confirm', function ($scope, $alert, spinner, _alert, _confirm) {
+    consumes.controller('ConsumesController', ['$scope', '$alert', 'spinner', '_alert', '_confirm', 'FileUploader', function ($scope, $alert, spinner, _alert, _confirm, FileUploader) {
         $scope.title = '积分消费模块';
 
         $scope.showAlert = function () {
@@ -120,6 +120,10 @@
             var number = Math.floor(Math.random() * 100 + 1);
             progress.width = number;
         };
+
+        var uploader = $scope.uploader = new FileUploader({
+            url: '/rest/files'
+        });
     }]);
 
 })(window, document);
