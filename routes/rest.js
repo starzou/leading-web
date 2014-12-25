@@ -61,20 +61,20 @@ var menus = [
         ]
     },
     {
-        "menuName": "积分发放-2",
+        "menuName": "积分兑换",
         "url"     : "#/",
         "subList" : [
             {
-                "menuName": "消费送积分",
-                "url"     : "#/points/consumes"
+                "menuName": "积分抵钱购",
+                "url"     : "#/points/produces"
             },
             {
-                "menuName": "收藏送积分",
-                "url"     : "#/points/consumes"
+                "menuName": "积分兑换购物券",
+                "url"     : "#/points/produces"
             },
             {
-                "menuName": "评价送积分",
-                "url"     : "#/points/consumes"
+                "menuName": "积分使用",
+                "url"     : "#/points/produces"
             }
         ]
     }
