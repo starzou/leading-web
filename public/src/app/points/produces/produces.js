@@ -18,6 +18,18 @@
 
     produces.controller('ProducesController', ['$scope', function ($scope) {
         $scope.title = '积分发放模块';
+
+        $scope.tabs = [
+            {
+                "title"  : "成功记录",
+                "content": "<h2>success</h2>"
+            },
+            {
+                "title"  : "失败记录",
+                "content": "<h2>error</h2>"
+            }
+        ];
+        $scope.tabs.activeTab = 1;
     }]);
 
 })(window, document);

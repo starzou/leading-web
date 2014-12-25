@@ -1,1 +1,22 @@
-<div ng-bind="title"></div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet box green-meadow">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i>基础组件封装 2
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse"></a>
+                    <a href="" class="reload"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+
+                <div bs-active-pane="tabs.activeTab" bs-tabs>
+                    <div ng-repeat="tab in tabs" title="{{ tab.title }}" ng-bind="tab.content" bs-pane></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
