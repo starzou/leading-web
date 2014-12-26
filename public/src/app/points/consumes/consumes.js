@@ -9,11 +9,13 @@
 
     var consumes = angular.module('consumes', []);
 
-    consumes.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/points/consumes', {
-            templateUrl: 'app/points/consumes/consumes.tpl.html',
-            controller : 'ConsumesController'
-        });
+    consumes.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            .state('points.consumes', {
+                url        : '/consumes',
+                templateUrl: 'app/points/consumes/consumes.tpl.html',
+                controller : 'ConsumesController'
+            });
     }]);
 
     consumes.controller('ConsumesController', ['$scope', '$alert', 'spinner', '_alert', '_confirm', 'FileUploader', function ($scope, $alert, spinner, _alert, _confirm, FileUploader) {

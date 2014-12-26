@@ -9,11 +9,13 @@
 
     var produces = angular.module('produces', []);
 
-    produces.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/points/produces', {
-            templateUrl: 'app/points/produces/produces.tpl.html',
-            controller : 'ProducesController'
-        });
+    produces.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            .state('points.produces', {
+                url        : '/produces',
+                templateUrl: 'app/points/produces/produces.tpl.html',
+                controller : 'ProducesController'
+            });
     }]);
 
     produces.controller('ProducesController', ['$scope', function ($scope) {

@@ -9,8 +9,13 @@
 
     var home = angular.module('home', []);
 
-    home.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/', {templateUrl: 'app/home/home.tpl.html', controller: 'HomeController'});
+    home.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            .state('home', {
+                url        : '/',
+                templateUrl: 'app/home/home.tpl.html',
+                controller : 'HomeController'
+            });
     }]);
 
     home.controller('HomeController', ['$scope', 'utils', function ($scope, utils) {
