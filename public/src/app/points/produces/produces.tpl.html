@@ -39,6 +39,22 @@
                     <div ng-repeat="tab in tabs" title="{{ tab.title }}" ng-bind="tab.content" bs-pane></div>
                 </div>
 
+                <br/>
+
+                <div class="tabbable tabbable-custom">
+                    <ul class="nav nav-tabs">
+                        <li ui-sref-active="active">
+                            <a ui-sref="points.produces.birthday">生日</a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="points.produces.email">邮箱</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" ui-view></div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

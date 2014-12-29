@@ -16,19 +16,31 @@
                 templateUrl: 'app/points/produces/produces.tpl.html',
                 controller : 'ProducesController'
             });
+
+        // TODO Tab test
+        $stateProvider
+            .state('points.produces.birthday', {
+                url     : '/birthday',
+                template: '<h1>登记生日送积分</h1>'
+            })
+            .state('points.produces.email', {
+                url     : '/email',
+                template: '<h1>登记邮箱送积分</h1>'
+            });
     }]);
 
     produces.controller('ProducesController', ['$scope', function ($scope) {
         $scope.title = '积分发放模块';
 
+        // TODO Tab test
         $scope.tabs = [
             {
                 "title"  : "成功记录",
-                "content": "<h2>success</h2>"
+                "content": "success"
             },
             {
                 "title"  : "失败记录",
-                "content": "<h2>error</h2>"
+                "content": "error"
             }
         ];
         $scope.tabs.activeTab = 1;
