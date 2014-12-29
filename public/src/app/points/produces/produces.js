@@ -24,8 +24,11 @@
                 template: '<h1>登记生日送积分</h1>'
             })
             .state('points.produces.email', {
-                url     : '/email',
-                template: '<h1>登记邮箱送积分</h1>'
+                url       : '/email',
+                template  : '<h1>登记邮箱送积分</h1>',
+                controller: ['$scope', function ($scope) {
+                    console.log($scope);
+                }]
             });
     }]);
 
