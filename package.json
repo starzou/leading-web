@@ -12,7 +12,7 @@
     "url": "https://github.com/starzou/leading-web"
   },
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./lib/bootstrap.js"
   },
   "dependencies": {
     "express": "~4.9.0",
