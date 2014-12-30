@@ -11,16 +11,26 @@
 
     spinner.factory('spinner', [function () {
         var me = {
+            scope: {
+                show: false
+            },
+
             init: function (scope) {
                 this.scope = scope;
             },
 
             show: function () {
-                this.scope.show = true;
+                var scope = this.scope;
+                if (!scope.show) {
+                    scope.show = true;
+                }
             },
 
             hide: function () {
-                this.scope.show = false;
+                var scope = this.scope;
+                if (scope.show) {
+                    scope.show = false;
+                }
             }
         };
 

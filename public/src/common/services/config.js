@@ -29,23 +29,45 @@
      * 错误拦截器
      */
     configModule.provider('errorInterceptor', function () {
-        this.$get = ['$q', function ($q) {
+        this.$get = ['$q', 'spinner', function ($q, spinner) {
             return {
                 'request': function (config) {
+                    spinner.show();
                     return config;
                 },
 
                 'requestError': function (rejection) {
                     console.log('请求错误');
+
+                    spinner.hide();
                     return $q.reject(rejection);
                 },
 
                 'response': function (response) {
+                    spinner.hide();
+
+                    //返回结果
+                    var result = response.data;
+
+                    // 接口返回的数据对象
+                    if (angular.isObject(result)) {
+                        console.log(result);
+
+                        // 失败, 提示消息
+                        if (result.success === false) {
+                            if (result.message) {
+                                alert(result.message);
+                            }
+                        }
+                    }
+
                     return response;
                 },
 
                 'responseError': function (rejection) {
                     console.log('响应错误');
+
+                    spinner.hide();
                     return $q.reject(rejection);
                 }
             };
