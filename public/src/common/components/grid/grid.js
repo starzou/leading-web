@@ -135,4 +135,16 @@
             }
         }
     }]);
+
+    grid.directive('pager', [function () {
+        return {
+            restrict   : 'A',
+            templateUrl: 'common/components/grid/pager.tpl.html',
+            compile    : function ($element, $attr) {
+                return function ($scope, $element, $attr) {
+                    console.log('pager link...');
+                };
+            }
+        }
+    }]);
 })(window, document);
