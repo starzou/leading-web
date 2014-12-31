@@ -109,7 +109,7 @@
                         // 失败, 提示消息
                         if (result.success === false) {
                             if (result.message) {
-                                alert(result.message);
+                                errorAlert({title: '错误提示!', content: result.message});
                             }
                         }
                     }

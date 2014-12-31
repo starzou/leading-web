@@ -47,9 +47,9 @@
                             var param = {};
                             angular.extend(param, $scope[gridOptions.param || 'param'], $scope.pager);
 
-                            DataSource.get(param, function (data) {
-                                $scope.data = data.data;
-                                $scope.pager = data.pager;
+                            DataSource.get(param, function (response) {
+                                $scope.data = response.data.data;
+                                $scope.pager = response.data.pager;
                             });
 
                         };
