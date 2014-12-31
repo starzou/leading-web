@@ -26,6 +26,22 @@
         return me;
     }]);
 
+    grid.provider('grid', function () {
+        var defaults = this.defaults = {
+            currentPage: 1,
+            pageSize   : 20
+        };
+
+        this.$get = [function () {
+            function Factory(config) {
+                var grid = angular.extend({}, defaults, config);
+                return grid;
+            }
+
+            return Factory
+        }];
+    });
+
     grid.directive('grid', ['$resource', function ($resource) {
         return {
             restrict   : 'A',
