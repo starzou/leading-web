@@ -69,8 +69,6 @@
 
                         console.log(grid);
                     };
-
-                    grid.query();
                 } else {
                     grid.query = angular.noop;
                 }
@@ -113,6 +111,23 @@
                     //}
 
                     $scope.grid = grid(gridOptions); // 创建grid
+
+                    $scope.$watch('grid.pager.currentPage', function (newValue, oldValue) {
+                        if (newValue === oldValue && newValue === undefined) {
+                            return;
+                        }
+
+                        if (angular.isNumber(newValue)) {
+                            console.log(newValue);
+
+                            if (newValue > $scope.grid.pager.totalPages) {
+                                return;
+                            }
+
+                            // 查询
+                            $scope.grid.query();
+                        }
+                    });
                 };
             }
         }
@@ -230,7 +245,6 @@
                         }
 
                         $scope.grid.pager.currentPage = currentPage;
-                        $scope.grid.query();
                     };
 
                     /**
