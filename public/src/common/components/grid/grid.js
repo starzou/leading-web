@@ -38,9 +38,40 @@
             sizeList: [10, 20, 50, 100, 150]
         };
 
-        this.$get = [function () {
+        this.$get = ['$resource', function ($resource) {
             function Factory(config) {
                 var grid = angular.extend({}, defaults, config);
+
+                if (grid.url) {
+                    var DataSource = $resource('/rest/users2' || grid.url);
+                    grid.query = function (options) {
+                        // 查询参数
+                        var queryParam = {
+                            currentPage: grid.pager.currentPage,
+                            pageSize   : grid.pager.pageSize
+                        };
+                        angular.extend(queryParam, options || {});
+
+                        // 查询数据
+                        DataSource.get(queryParam, function (response) {
+                            // 数据集合
+                            grid.list = response.list;
+
+                            // 分页信息
+                            grid.pager = {
+                                currentPage: response.currentPage,
+                                pageSize   : response.pageSize,
+                                totalItems : response.totalItems,
+                                totalPages : response.totalPages
+                            };
+                        });
+
+                        console.log(grid);
+                    };
+
+                    grid.query();
+                }
+
                 return grid;
             }
 
