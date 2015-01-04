@@ -116,11 +116,12 @@
                         if (newValue === oldValue && newValue === undefined) {
                             return;
                         }
-
+                        newValue = +newValue;
                         if (angular.isNumber(newValue)) {
                             console.log(newValue);
 
                             if (newValue > $scope.grid.pager.totalPages) {
+                                $scope.grid.pager.currentPage = $scope.grid.pager.totalPages;
                                 return;
                             }
 
