@@ -7,29 +7,13 @@
 (function (window, document) {
     'use strict';
 
-    var grid = angular.module('components.grid', []);
+    var gridModule = angular.module('components.grid', []);
 
-
-    grid.factory('gridUtil', [function () {
-        var me = {
-            range: function (end, start, step) {
-                step = step || 1; // 增量
-                start = start || 1; // 开始值
-                var ranges = [];
-                for (; start <= end; start = start + step) {
-                    ranges.push(start);
-                }
-                return ranges;
-            }
-        };
-
-        return me;
-    }]);
 
     /**
      * grid 工厂, 提供全局配置, 每次使用, 生成新的grid
      */
-    grid.provider('grid', function () {
+    gridModule.provider('grid', function () {
         var defaults = this.defaults = {
             pager   : {
                 currentPage: 1,
@@ -80,7 +64,7 @@
         }];
     });
 
-    grid.directive('grid', ['$resource', 'grid', function ($resource, grid) {
+    gridModule.directive('grid', ['$resource', 'grid', function ($resource, grid) {
         return {
             restrict   : 'A',
             scope      : true,
@@ -89,28 +73,9 @@
             compile    : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
                     var gridOptions = angular.copy($scope[$attr['grid'] || 'gridOptions']);// 取得 父$scope中 gridOptions
-                    //$scope._gridOptions = gridOptions;
-                    //
-                    //$scope.columns = gridOptions.columns;
-                    //$scope.data = gridOptions.data;
-                    //$scope.pager = gridOptions.pager;
-                    //
-                    //if (gridOptions.url) {
-                    //    var DataSource = $resource(gridOptions.url);
-                    //    $scope.query = function () {
-                    //        var param = {};
-                    //        angular.extend(param, $scope[gridOptions.param || 'param'], $scope.pager);
-                    //
-                    //        DataSource.get(param, function (response) {
-                    //            $scope.data = response.data.data;
-                    //            $scope.pager = response.data.pager;
-                    //        });
-                    //
-                    //    };
-                    //    $scope.query();
-                    //}
 
-                    $scope.grid = grid(gridOptions); // 创建grid
+                    // 根据gridOptions, 创建grid
+                    $scope.grid = grid(gridOptions);
 
                     $scope.$watch('grid.pager.currentPage', function (newValue, oldValue) {
                         if (newValue === oldValue && newValue === undefined) {
@@ -137,7 +102,7 @@
     }]);
 
 
-    grid.directive('gridRow', ['$compile', function ($compile) {
+    gridModule.directive('gridRow', ['$compile', function ($compile) {
         return {
             restrict: 'A',
             compile : function ($element, $attr) {
@@ -165,54 +130,7 @@
         }
     }]);
 
-    grid.directive('pagination', ['gridUtil', function (gridUtil) {
-        return {
-            restrict   : 'A',
-            templateUrl: 'common/components/grid/pagination.tpl.html',
-            compile    : function ($element, $attr) {
-                return function ($scope, $element, $attr) {
-                    /**
-                     * 选择 当前页
-                     * @param currentPage
-                     */
-                    $scope.selectPage = function (currentPage) {
-                        $scope.pager.currentPage = currentPage;
-                        console.log($scope.pager);
-                        $scope.query();
-                    };
-
-                    /**
-                     * 计算页码
-                     */
-                    $scope.rangeTotalPages = function () {
-                        $scope.totalPages = gridUtil.range($scope.pager.totalPages);
-                    };
-                    $scope.$watch('pager', function (newValue, oldValue) {
-                        if (newValue === oldValue && newValue === undefined) {
-                            return;
-                        }
-                        $scope.rangeTotalPages();
-                    });
-
-                    /**
-                     * 没有上一页
-                     */
-                    $scope.noPrevious = function () {
-                        return $scope.pager.currentPage == 1;
-                    };
-
-                    /**
-                     * 没有下一页
-                     */
-                    $scope.noNext = function () {
-                        return $scope.pager.currentPage == $scope.pager.totalPages;
-                    };
-                };
-            }
-        }
-    }]);
-
-    grid.directive('pager', [function () {
+    gridModule.directive('pager', [function () {
         return {
             restrict   : 'A',
             scope      : true,

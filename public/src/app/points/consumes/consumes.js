@@ -76,8 +76,7 @@
         };
 
         $scope.gridOptions = {
-            data   : data.data, // 数据
-            pager  : data.pager, // 分页信息
+            list   : data.data, // 数据
             columns: [{ // 列配置
                 displayName : '姓名',
                 cellTemplate: '<span ng-bind="entity.name + 1"></span>'
