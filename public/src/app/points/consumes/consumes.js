@@ -92,7 +92,7 @@
 
         //$scope.param = {name: '张三', age: 23};
         $scope.gridOptions2 = {
-            url    : '/rest/users',
+            url    : '/rest/users2',
             columns: [{ // 列配置
                 displayName : '姓名',
                 cellTemplate: '<span ng-bind="entity.name"></span>'

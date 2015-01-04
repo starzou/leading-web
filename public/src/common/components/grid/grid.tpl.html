@@ -2,15 +2,15 @@
     <table class="table table-striped table-bordered table-hover">
         <thead>
             <tr>
-                <th ng-repeat="column in columns track by $index" ng-bind="::column.displayName"></th>
+                <th ng-repeat="column in grid.columns track by $index" ng-bind="::column.displayName"></th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="entity in data track by $index" grid-row></tr>
+            <tr ng-repeat="entity in grid.list track by $index" grid-row></tr>
         </tbody>
     </table>
-    <div class="row" ng-if="_gridOptions.url">
-        <div class="col-md-5 col-sm-12" pager></div>
-        <div class="col-md-7 col-sm-12" pagination></div>
+    <div class="row" ng-if="grid.url">
+        <div class="col-md-5 col-sm-12"></div>
+        <div class="col-md-7 col-sm-12" pager></div>
     </div>
 </div>

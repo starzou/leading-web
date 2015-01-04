@@ -43,7 +43,7 @@
                 var grid = angular.extend({}, defaults, config);
 
                 if (grid.url) {
-                    var DataSource = $resource('/rest/users2' || grid.url);
+                    var DataSource = $resource(grid.url);
                     grid.query = function (options) {
                         // 查询参数
                         var queryParam = {
@@ -88,26 +88,26 @@
             compile    : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
                     var gridOptions = angular.copy($scope[$attr['grid'] || 'gridOptions']);// 取得 父$scope中 gridOptions
-                    $scope._gridOptions = gridOptions;
-
-                    $scope.columns = gridOptions.columns;
-                    $scope.data = gridOptions.data;
-                    $scope.pager = gridOptions.pager;
-
-                    if (gridOptions.url) {
-                        var DataSource = $resource(gridOptions.url);
-                        $scope.query = function () {
-                            var param = {};
-                            angular.extend(param, $scope[gridOptions.param || 'param'], $scope.pager);
-
-                            DataSource.get(param, function (response) {
-                                $scope.data = response.data.data;
-                                $scope.pager = response.data.pager;
-                            });
-
-                        };
-                        $scope.query();
-                    }
+                    //$scope._gridOptions = gridOptions;
+                    //
+                    //$scope.columns = gridOptions.columns;
+                    //$scope.data = gridOptions.data;
+                    //$scope.pager = gridOptions.pager;
+                    //
+                    //if (gridOptions.url) {
+                    //    var DataSource = $resource(gridOptions.url);
+                    //    $scope.query = function () {
+                    //        var param = {};
+                    //        angular.extend(param, $scope[gridOptions.param || 'param'], $scope.pager);
+                    //
+                    //        DataSource.get(param, function (response) {
+                    //            $scope.data = response.data.data;
+                    //            $scope.pager = response.data.pager;
+                    //        });
+                    //
+                    //    };
+                    //    $scope.query();
+                    //}
 
                     $scope.grid = grid(gridOptions); // 创建grid
                 };
@@ -123,7 +123,7 @@
                 return function ($scope, $element, $attr) {
                     var template = '',
                         element,
-                        columns = $scope.columns,
+                        columns = $scope.grid.columns,
                         column,
                         index,
                         length;

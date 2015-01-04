@@ -104,7 +104,7 @@
 
                     // 接口返回的数据对象
                     if (angular.isObject(result)) {
-                        console.log(result);
+                        //console.log(result);
 
                         // 失败, 提示消息
                         if (result.success === false) {
