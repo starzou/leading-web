@@ -26,10 +26,16 @@
         return me;
     }]);
 
+    /**
+     * grid 工厂, 提供全局配置, 每次使用, 生成新的grid
+     */
     grid.provider('grid', function () {
         var defaults = this.defaults = {
-            currentPage: 1,
-            pageSize   : 20
+            pager   : {
+                currentPage: 1,
+                pageSize   : 20
+            },
+            sizeList: [10, 20, 50, 100, 150]
         };
 
         this.$get = [function () {
@@ -42,7 +48,7 @@
         }];
     });
 
-    grid.directive('grid', ['$resource', function ($resource) {
+    grid.directive('grid', ['$resource', 'grid', function ($resource, grid) {
         return {
             restrict   : 'A',
             scope      : true,
@@ -71,6 +77,8 @@
                         };
                         $scope.query();
                     }
+
+                    $scope.grid = grid(gridOptions); // 创建grid
                 };
             }
         }
