@@ -12,10 +12,10 @@
             <span>条</span>
         </label>
 
-        <a href="" class="btn btn-sm default prev" title="第一页"><i class="fa fa-angle-double-left"></i></a>
-        <a href="" class="btn btn-sm default prev" title="上一页"><i class="fa fa-angle-left"></i></a>
+        <a href="" class="btn btn-sm default prev" title="第一页" ng-click="setPage('first')"><i class="fa fa-angle-double-left"></i></a>
+        <a href="" class="btn btn-sm default prev" title="上一页" ng-class="{disabled : noPrevious()}" ng-click="noPrevious() ? angular.noop : setPage('prev')"><i class="fa fa-angle-left"></i></a>
         <input type="text" ng-model="grid.pager.currentPage" class="pagination-panel-input form-control input-mini input-inline input-sm" style="text-align:center; margin: 0 5px;">
-        <a href="" class="btn btn-sm default next " title="下一页"><i class="fa fa-angle-right"></i></a>
-        <a href="" class="btn btn-sm default next " title="最后一页"><i class="fa fa-angle-double-right"></i></a>
+        <a href="" class="btn btn-sm default next" title="下一页" ng-class="{disabled : noNext()}" ng-click="noNext() ? angular.noop : setPage('next')"><i class="fa fa-angle-right"></i></a>
+        <a href="" class="btn btn-sm default next" title="最后一页" ng-click="setPage('last')"><i class="fa fa-angle-double-right"></i></a>
     </div>
 </div>

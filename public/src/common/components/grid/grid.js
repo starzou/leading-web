@@ -42,6 +42,7 @@
             function Factory(config) {
                 var grid = angular.extend({}, defaults, config);
 
+                // 提供grid.query方法 查询数据
                 if (grid.url) {
                     var DataSource = $resource(grid.url);
                     grid.query = function (options) {
@@ -70,6 +71,8 @@
                     };
 
                     grid.query();
+                } else {
+                    grid.query = angular.noop;
                 }
 
                 return grid;
@@ -194,10 +197,55 @@
     grid.directive('pager', [function () {
         return {
             restrict   : 'A',
+            scope      : true,
             templateUrl: 'common/components/grid/pager.tpl.html',
             compile    : function ($element, $attr) {
                 return function ($scope, $element, $attr) {
                     console.log('pager link...');
+
+                    /**
+                     * 选择页
+                     * @param currentPage
+                     */
+                    $scope.setPage = function (page) {
+                        var currentPage = +$scope.grid.pager.currentPage;
+
+                        if (angular.isString(page)) {
+                            switch (page) {
+                                case 'first':
+                                    currentPage = 1;
+                                    break;
+                                case 'last':
+                                    currentPage = +$scope.grid.pager.totalPages;
+                                    break;
+                                case 'prev':
+                                    currentPage--;
+                                    break;
+                                case 'next':
+                                    currentPage++;
+                                    break;
+                            }
+                        } else if (angular.isNumber(page)) {
+                            currentPage = page;
+                        }
+
+                        $scope.grid.pager.currentPage = currentPage;
+                        $scope.grid.query();
+                    };
+
+                    /**
+                     * 没有上一页
+                     */
+                    $scope.noPrevious = function () {
+                        return $scope.grid.pager.currentPage == 1;
+                    };
+
+                    /**
+                     * 没有下一页
+                     */
+                    $scope.noNext = function () {
+                        return $scope.grid.pager.currentPage === $scope.grid.pager.totalPages;
+                    };
                 };
             }
         }
