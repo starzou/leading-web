@@ -96,6 +96,13 @@
                             $scope.grid.pager.currentPage = 1;
                         }
                     });
+
+                    $scope.$watch('grid.pager.pageSize', function (newValue, oldValue) {
+                        if (newValue === oldValue && newValue === undefined) {
+                            return;
+                        }
+                        $scope.grid.query();
+                    });
                 };
             }
         }
