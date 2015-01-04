@@ -117,7 +117,7 @@
                             return;
                         }
                         newValue = +newValue;
-                        if (angular.isNumber(newValue)) {
+                        if (!isNaN(newValue) && angular.isNumber(newValue)) {
                             console.log(newValue);
 
                             if (newValue > $scope.grid.pager.totalPages) {
@@ -127,6 +127,8 @@
 
                             // 查询
                             $scope.grid.query();
+                        } else {
+                            $scope.grid.pager.currentPage = 1;
                         }
                     });
                 };
