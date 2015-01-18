@@ -1,0 +1,13 @@
+<li ng-repeat="menu in menus">
+    <a href="{{menu.url}}">
+        <i class="icon-home"></i>
+        <span class="title" ng-bind="menu.menuName"></span>
+        <span class="selected"></span>
+        <span class="arrow"></span>
+    </a>
+    <ul class="sub-menu">
+        <li ng-repeat="subMenu in menu.subList">
+            <a href="{{subMenu.url}}" ng-bind="subMenu.menuName"></a>
+        </li>
+    </ul>
+</li>

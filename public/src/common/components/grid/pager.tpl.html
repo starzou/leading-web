@@ -1,0 +1,21 @@
+<div class="dataTables_paginate paging_bootstrap_extended">
+    <div class="pagination-panel" style="float: right;margin: 0;">
+        <!--<span class="pagination-panel-total">当前页:<strong ng-bind="grid.pager.currentPage"></strong></span>
+        <span class="seperator">|</span>-->
+        <span class="pagination-panel-total">总页数:<strong ng-bind="grid.pager.totalPages"></strong></span>
+        <span class="seperator">|</span>
+        <span class="pagination-panel-total">总条数:<strong ng-bind="grid.pager.totalItems"></strong></span>
+        <label>
+            <span class="seperator">|</span>
+            <span>每页</span>
+            <select class="form-control input-xsmall input-sm input-inline" ng-model="grid.pager.pageSize" ng-options="number for number in grid.sizeList"></select>
+            <span>条</span>
+        </label>
+
+        <a href="" class="btn btn-sm default prev" title="第一页" ng-click="setPage('first')"><i class="fa fa-angle-double-left"></i></a>
+        <a href="" class="btn btn-sm default prev" title="上一页" ng-class="{disabled : noPrevious()}" ng-click="noPrevious() ? angular.noop : setPage('prev')"><i class="fa fa-angle-left"></i></a>
+        <input type="text" ng-model="grid.pager.currentPage" class="pagination-panel-input form-control input-mini input-inline input-sm" style="text-align:center; margin: 0 5px;">
+        <a href="" class="btn btn-sm default next" title="下一页" ng-class="{disabled : noNext()}" ng-click="noNext() ? angular.noop : setPage('next')"><i class="fa fa-angle-right"></i></a>
+        <a href="" class="btn btn-sm default next" title="最后一页" ng-click="setPage('last')"><i class="fa fa-angle-double-right"></i></a>
+    </div>
+</div>

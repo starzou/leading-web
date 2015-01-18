@@ -9,4 +9,13 @@
 
     var points = angular.module('points', ['produces', 'consumes']);
 
+    points.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            .state('points', {
+                abstract: true,
+                url     : '/points',
+                template : '<div ui-view></div>'
+            });
+    }]);
+
 })(window, document);

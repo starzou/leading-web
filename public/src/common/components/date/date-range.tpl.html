@@ -1,0 +1,11 @@
+<div class="form-inline">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        <input type="text" size="10" readonly style="cursor: pointer;" class="form-control" ng-model="param.startDate" data-max-date="{{param.endDate || maxDate}}" placeholder="开始日期" bs-datepicker>
+    </div>
+    <span> - </span>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        <input type="text" size="10" readonly style="cursor: pointer;" class="form-control" ng-model="param.endDate" data-min-date="{{param.startDate}}" placeholder="结束日期" bs-datepicker>
+    </div>
+</div>

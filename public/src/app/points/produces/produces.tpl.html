@@ -1,1 +1,61 @@
-<div ng-bind="title"></div>
+<h3 class="page-title">首页 <small>Home</small></h3>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="">首页</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="">管理中心</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="">积分发放</a>
+        </li>
+    </ul>
+    <div class="page-toolbar">
+        <div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height grey-salt" data-placement="top" data-original-title="Change dashboard date range">
+            <i class="icon-calendar"></i>&nbsp; <span class="thin uppercase visible-lg-inline-block"></span>&nbsp; <i class="fa fa-angle-down"></i>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="height: 730px;">
+    <div class="col-md-12">
+        <div class="portlet box green-meadow">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i>基础组件封装 2
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse"></a>
+                    <a href="" class="reload"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+
+                <div bs-active-pane="tabs.activeTab" bs-tabs>
+                    <div ng-repeat="tab in tabs" title="{{ tab.title }}" ng-bind="tab.content" bs-pane></div>
+                </div>
+
+                <br/>
+
+                <div class="tabbable tabbable-custom">
+                    <ul class="nav nav-tabs">
+                        <li ui-sref-active="active">
+                            <a ui-sref="points.produces.birthday">生日</a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="points.produces.email">邮箱</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" ui-view></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

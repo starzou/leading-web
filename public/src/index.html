@@ -1,53 +1,91 @@
 <!DOCTYPE html>
-<html lang="zh-CN" ng-app="App">
+<html lang="zh-CN" ng-app="App" ng-controller="AppController">
+
 <head>
-    <meta charset="UTF-8">
-    <title>leading-web 系统</title>
-    <!-- build:css css/lib.css -->
+    <meta charset="utf-8"/>
+    <title ng-bind="title"></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+    <!-- build:css assets/css/lib.css -->
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="../bower_components/simple-line-icons/css/simple-line-icons.css"/>
+
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css"/>
+    <link rel="stylesheet" href="../bower_components/bootstrap-additions/dist/bootstrap-additions.css"/>
     <link rel="stylesheet" href="../bower_components/angular-motion/dist/angular-motion.css"/>
     <!-- endbuild -->
 
-    <!-- build:css css/app.css -->
+    <!-- build:css assets/themes/metro/css/theme.css -->
+    <link href="assets/themes/metro/css/components.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/themes/metro/css/plugins.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/themes/metro/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/themes/metro/css/custom.css" rel="stylesheet" type="text/css"/>
+    <!-- endbuild -->
+
+    <link href="assets/themes/metro/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
+
+    <!-- build:css assets/css/app.css -->
     <link rel="stylesheet" href="assets/css/app.css"/>
     <!-- endbuild -->
 </head>
-<body>
-    <h1>leading-web 系统</h1>
-    <ul>
-        <li><a href="#/">首页</a></li>
-        <li>
-            <div>
-                <span>积分模块</span>
-                <ul>
-                    <li><a href="#/points/produces">积分发放模块</a></li>
-                    <li><a href="#/points/consumes">积分消费模块</a></li>
-                </ul>
-            </div>
-        </li>
-        <li><a href="#/members">会员模块</a></li>
-    </ul>
-    <div ng-view></div>
 
-    <!-- build:js js/lib.js -->
+<body class="page-header-fixed page-sidebar-fixed page-footer-fixed page-quick-sidebar-over-content" ng-cloak>
+    <div page-spinner></div>
+
+    <div page-header></div>
+
+    <div class="clearfix"></div>
+
+    <div page-container></div>
+
+    <div page-footer></div>
+
+    <!-- build:js assets/js/lib.js -->
     <script src="../bower_components/angular/angular.js"></script>
-    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-i18n/angular-locale_zh-cn.js"></script>
+    <script src="../bower_components/ui-router/release/angular-ui-router.js"></script>
     <script src="../bower_components/angular-resource/angular-resource.js"></script>
     <script src="../bower_components/angular-animate/angular-animate.js"></script>
     <script src="../bower_components/angular-strap/dist/angular-strap.js"></script>
     <script src="../bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+    <script src="../bower_components/angular-file-upload/angular-file-upload.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js js/common.js -->
+    <!-- build:js assets/js/common.js -->
+    <script src="common/templates.js"></script>
+    <!--common-templates.js-->
+
     <script src="common/services/utils.js"></script>
     <script src="common/services/context.js"></script>
+    <script src="common/services/config.js"></script>
     <script src="common/services/services.js"></script>
+
+    <script src="common/resources/menus.js"></script>
+    <script src="common/resources/resources.js"></script>
+
+    <script src="common/components/spinner/spinner.js"></script>
+    <script src="common/components/header/header.js"></script>
+
+    <script src="common/components/container/sidebar/menu/menu.js"></script>
+    <script src="common/components/container/sidebar/sidebar.js"></script>
+    <script src="common/components/container/content/content.js"></script>
+    <script src="common/components/container/container.js"></script>
+
+    <script src="common/components/footer/footer.js"></script>
+    <script src="common/components/date/date.js"></script>
+    <script src="common/components/dialog/dialog.js"></script>
+    <script src="common/components/grid/grid.js"></script>
+    <script src="common/components/progress/progress.js"></script>
+    <script src="common/components/fileUpload/fileUpload.js"></script>
+    <script src="common/components/components.js"></script>
 
     <script src="common/directives/validateForm.js"></script>
     <script src="common/directives/directives.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js js/app.js -->
+    <!-- build:js assets/js/app.js -->
     <script src="app/home/home.js"></script>
     <script src="app/points/produces/produces.js"></script>
     <script src="app/points/consumes/consumes.js"></script>
@@ -55,5 +93,6 @@
     <script src="app/members/members.js"></script>
     <script src="app/app.js"></script>
     <!-- endbuild -->
+
 </body>
 </html>

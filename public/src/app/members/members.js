@@ -9,8 +9,13 @@
 
     var members = angular.module('members', []);
 
-    members.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/members', {templateUrl: 'app/members/members.tpl.html', controller: 'MembersController'});
+    members.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            .state('members', {
+                url        : '/members',
+                templateUrl: 'app/members/members.tpl.html',
+                controller : 'MembersController'
+            });
     }]);
 
     members.controller('MembersController', ['$scope', function ($scope) {

@@ -9,15 +9,44 @@
 
     var produces = angular.module('produces', []);
 
-    produces.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/points/produces', {
-            templateUrl: 'app/points/produces/produces.tpl.html',
-            controller : 'ProducesController'
-        });
+    produces.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            .state('points.produces', {
+                url        : '/produces',
+                templateUrl: 'app/points/produces/produces.tpl.html',
+                controller : 'ProducesController'
+            });
+
+        // TODO Tab test
+        $stateProvider
+            .state('points.produces.birthday', {
+                url     : '/birthday',
+                template: '<h1>登记生日送积分</h1>'
+            })
+            .state('points.produces.email', {
+                url       : '/email',
+                template  : '<h1>登记邮箱送积分</h1>',
+                controller: ['$scope', function ($scope) {
+                    console.log($scope);
+                }]
+            });
     }]);
 
     produces.controller('ProducesController', ['$scope', function ($scope) {
         $scope.title = '积分发放模块';
+
+        // TODO Tab test
+        $scope.tabs = [
+            {
+                "title"  : "成功记录",
+                "content": "success"
+            },
+            {
+                "title"  : "失败记录",
+                "content": "error"
+            }
+        ];
+        $scope.tabs.activeTab = 1;
     }]);
 
 })(window, document);

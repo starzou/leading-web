@@ -7,6 +7,6 @@
 (function (window, document) {
     'use strict';
 
-    var services = angular.module('services', ['services.context', 'services.utils']);
+    var services = angular.module('services', ['services.context', 'services.utils', 'services.config']);
 
 })(window, document);

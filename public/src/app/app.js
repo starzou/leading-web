@@ -9,30 +9,30 @@
 
     /**
      * App 主模块
-     * @type {*|module}
      */
-    var app = angular.module('App', ['ngRoute', 'ngResource', 'services', 'directives', 'home', 'members', 'points']);
+    var app = angular.module('App', ['ui.router', 'ngResource', 'ngLocale', 'ngAnimate', 'templates', 'services', 'components', 'directives', 'home', 'members', 'points']);
 
     /**
      * App 配置
      */
-    app.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.otherwise({redirectTo: '/'});
+    app.config(['$urlRouterProvider', function ($urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
     }]);
 
 
     /**
      * App 初始化
      */
-    app.run(['$rootScope', function ($rootScope) {
-
+    app.run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
+        $rootScope.$state = $state;
+        $rootScope.$stateParams = $stateParams;
     }]);
 
     /**
      * 主控制器
      */
-    app.controller('AppCtrl', ['$scope', function () {
-
+    app.controller('AppController', ['$scope', function ($scope) {
+        $scope.title = '忠诚度管理';
     }]);
 
 })(window, document);
